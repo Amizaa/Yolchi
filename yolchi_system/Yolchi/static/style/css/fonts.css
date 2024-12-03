@@ -1,0 +1,10 @@
+/* define main font family */
+@font-face {
+    font-family: vazir;
+    src: url('../../fonts/Vazir.ttf');
+}
+
+@font-face {
+    font-family: yekan;
+    src: url('../../fonts/BYekan.ttf');
+}

@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+
+{% load static%}
+
+{% block title %}
+    خانه
+{% endblock %}
+
+{% block content %}
+
+    <div id="home-top" class="d-flex justify-content-center  align-items-center mt-3">
+        <div class="bg-container"></div>
+        <div class="container">
+            <div class="row text-center text-light">
+                <div class="col-12">
+                 <h1 class="display-1">یولچی</h1>
+                </div>
+                <div class="col-12 mt-4">
+                    <h2>سامانه هوشمند حمل و نقل و باربری</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container text-center mt-4">
+        <h3 class="display-4">چرا یولچی...؟!</h3>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <hr class="divider">
+    </div>
+
+    <div class="container d-flex justify-content-center my-2">
+        <div class="row d-flex justify-content-center">
+            <div class="col-4 p-3">
+                <div class="card h-100 text-center">
+                    <div class="card-header bg-main text-light h-100">
+                        <h4>ردیابی بار در هر لحظه</h4>
+                    </div>
+                    <div class="card-body">
+                      <p class="card-text">
+                        ردیابی و مشاهده محموله‌ها را در هر لحظه را فراهم می‌کنیم و کاربران را قادر می‌سازیم تا جابجایی کالاها را به صورت آنی نظارت کنند. 
+                      </p>
+                    </div>
+                  </div>
+            </div>
+
+            <div class="col-4 p-3">
+                <div class="card h-100 text-center">
+                    <div class="card-header bg-main text-light h-100">
+                        <h4> خودکار و بهینه سازی عملیات حمل و نقل</h4>
+                    </div>
+                    <div class="card-body">
+                      <p class="card-text">این سیستم جنبه های مختلف مدیریت حمل و نقل مانند انتخاب حامل، بهینه سازی مسیر و مدیریت فاکتور را خودکار می کند
+                      </p>
+                    </div>
+                  </div>
+            </div>
+
+            <div class="col-4 p-3">
+                <div class="card h-100 text-center">
+                    <div class="card-header bg-main text-light h-100">
+                        <h4>استعلام کرایه حمل و صدور بارنامه</h4>
+                    </div>
+                    <div class="card-body">
+                      <p class="card-text">
+                        این سیستم به طور خودکار و هوشمند کرایه حمل را با توجه به طول مسیر، وزن و ابعاد محموله محاسبه میکند و سپس با توجه آن بارنامه را صادر میکند
+                      </p>
+                    </div>
+                  </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="container text-center mt-4">
+        <h3 class="display-4">خدمات یولچی</h3>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <hr class="divider">
+    </div>
+
+    <div class="container d-flex justify-content-center my-2">
+        <div class="row d-flex justify-content-center">
+            <div class="col-5 p-3">
+                <div class="card h-100 text-center">
+                    <div class="hover-effect bg-info">
+                        <img class="card-img-top" src="{% static 'images/truck.png' %}" alt="Card image cap">
+                    </div>
+              
+                    <div class="card-body">
+                        <h3 class="card-title">یول</h3>
+                        <p class="card-text">
+                            رانندگان میتوانند با توجه به مدل و ظرفیت بارگیر خود در هر ساعت از شبانه روز از سراسر کشور محموله مناسب را انتخاب کنند
+                        </p>
+                        <a href="#" class="btn btn-primary">ورود به برنامه یول</a>
+                    </div>
+                  </div>
+            </div>
+
+            <div class="col-5 p-3">
+                <div class="card h-100 text-center">
+                    <div class="hover-effect bg-main">
+                        <img class="card-img-top" src="{% static 'images/man.png' %}" alt="Card image cap">
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">یوک</h3>
+                        <p class="card-text">
+                            صاحبان بار میتوانند در بدون محدودیت مشخصات محموله خود را ثبت کنند تا در اسرع وقت راننده ای با بارگیر مناسب انتخاب شود
+                        </p>
+                        <a href="#" class="btn btn-primary">ورود به برنامه یوک</a>
+                    </div>
+                  </div>
+            </div>
+
+        </div>
+    </div>
+
+
+{% endblock %} 
+

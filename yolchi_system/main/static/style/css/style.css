@@ -1,0 +1,71 @@
+@font-face {
+    font-family: vazir;
+    src: url('../../fonts/Vazir.ttf');
+}
+
+@font-face {
+    font-family: anjoman-heavy;
+    src: url('../../fonts/Anjoman-Heavy.ttf');
+}
+
+@font-face {
+    font-family: anjoman-light;
+    src: url('../../fonts/Anjoman-Regular.ttf');
+}
+
+
+:root{
+    --main: #495979;
+}
+
+body{
+font-family: anjoman-light,sans-serif; 
+direction: rtl;
+}
+
+h1, h2, h3, h4, h5, h6{
+    font-family: anjoman-heavy,sans-serif !important; 
+    line-height: 1.6;
+}
+
+#home-top{
+    background-image: url(../../images/background.png);
+    height: 500px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.bg-container{
+    height: 500px;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    left: 0;
+    position: absolute;
+}
+
+
+.divider {
+    border: 2px solid var(--main);
+    border-radius: 50px;
+    margin: 20px 0;
+    width: 25%;
+}
+
+
+.hover-effect img{
+    display: block;
+    position: relative;
+    -webkit-transition: all 0.3s ease-in;
+    transition: all 0.3s ease-in;
+}
+
+.hover-effect:hover img {
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+.icon {
+    width: 40px;
+}
+

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.png' %}">
+    <link rel="stylesheet" type="text/css" href="{% static '/bootstrap/css/bootstrap.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static '/style/css/style.css' %}">
+    <script src="{% static '/bootstrap/js/bootstrap.js' %}"></script>
+    <title>{% block title %}{% endblock %}</title>
+</head>
+
+<body>
+
+    {% include "main/partials/header.html"  %}
+
+    {% block content%}
+    {% endblock%}
+
+    {% include "main/partials/footer.html"  %}
+    
+</body>
+</html>
