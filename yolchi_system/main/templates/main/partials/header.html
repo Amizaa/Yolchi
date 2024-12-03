@@ -2,17 +2,26 @@
 <header class="bg-light sticky-top">
     <nav class="navbar navbar-expand-lg navbar-light " style="font-size: 1rem;">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">
-          <img src="{% static 'images/logo.png' %}" height="30" alt="yol">
+        <a class="navbar-brand" href="{%url 'main:home' %}">
+          <img  src="{% static 'images/logo.png' %}" height="30" alt="yol">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
       
         <div class="d-lg-flex justify-content-around collapse navbar-collapse" id="navbarNavDropdown">
-          <ul class="navbar-nav ms-auto ">
+          <ul class="navbar-nav ms-auto d-flex align-items-center">
+            <li class="nav-item dropdown">
+              <a class="nav-link mx-2 dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="{% static 'images/person.png' %}" class="rounded-circle bg-main" height="40">
+             </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <li><a class="dropdown-item" href="#">پروفایل</a></li>
+                <li><a class="dropdown-item" href="#">خروج از حساب کاربری</a></li>
+              </ul>
+            </li>
             <li class="nav-item">
-              <a class="nav-link mx-2 active" aria-current="page" id="home" href="#">خانه</a>
+              <a  class="nav-link mx-2" aria-current="page" id="home" href="{%url 'main:home' %}">خانه</a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link mx-2 dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -24,10 +33,10 @@
               </ul>
             </li>
             <li class="nav-item">
-              <a class="nav-link mx-2" href="#">درباره ما</a>
+              <a class="nav-link mx-2"  href="{%url 'main:about' %}">درباره ما</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link mx-2" href="#">تماس با ما</a>
+              <a class="nav-link mx-2" href="{%url 'main:contact' %}">تماس با ما</a>
             </li>
           </ul>
 

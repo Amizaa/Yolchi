@@ -9018,5 +9018,9 @@ a.text-dark:hover, a.text-dark:focus {
   color: var(--dark);
   text-decoration: none;
 }
+
+.text-main{
+  color: var(--main) !important;
+}
 /*# sourceMappingURL=bootstrap.css.map */
 

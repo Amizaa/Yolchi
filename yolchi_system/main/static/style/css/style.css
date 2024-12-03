@@ -69,3 +69,21 @@ h1, h2, h3, h4, h5, h6{
     width: 40px;
 }
 
+.paragraph{
+    font-size: 1.7rem;
+    font-weight: 300;
+    line-height: 1.5;
+}
+
+.form-control:hover{
+    cursor: pointer;
+}
+
+.contact-form{
+    box-shadow: 0 6px 30px 7px #2125471a;
+    transition: 0.5s;
+}
+
+.contact-form:hover{
+    transform: translateY(-20px);
+}

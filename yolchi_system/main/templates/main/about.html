@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% load static%}
+
+{% block title %}
+    درباره ما
+{% endblock %}
+
+{% block content %}
+
+    <div id="home-top" class="d-flex justify-content-center  align-items-center mt-3">
+        <div class="bg-container"></div>
+        <div class="container">
+            <div class="row text-center text-light">
+                <div class="col-12">
+                 <h1 class="display-1">درباره ما</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="bg-info my-4">
+        <div class="container d-flex justify-content-center p-4">
+            <div class="row d-flex justify-content-center">
+                <div class="col-8">
+                    
+                    <div class="d-flex justify-content-center">
+                        <hr class="divider" style="width: 15% !important"><h5 class="text-center text-main">&nbsp;&nbsp;درباره یولچی</h5>
+                    </div>
+                    <img class="img-fluid" src="{% static 'images/logo.png' %}">
+                </div>
+
+                <div class="col-4 text-right pt-5 pr-4">
+                    <p class="paragraph">
+                        <b>یولچی</b> یک کلمه ترکی-آذری است که از دو بخش یول (به معنی راه) و پسوند چی تشکیل شده است و به معنی راهنمای راه است. 
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <div class="container text-center mt-4">
+        <h3 class="display-3">ابزار های استفاده شده</h3>
+    </div>
+
+    <div class="d-flex justify-content-center">
+        <hr class="divider">
+    </div>
+
+    <div class="mb-4">
+        <div class="container d-flex justify-content-center p-4">
+            <div class="row d-flex justify-content-center">
+
+                <div class="col-12">
+                    <ul class="list footer-links mt-3">
+                        <li class="list-item d-flex justify-content-center">
+                            <img width="70%" src="{% static 'images/django.png' %}">
+                        </li>
+                        <li class="list-item d-flex justify-content-center">
+                            <img width="70%" src="{% static 'images/bootstrap.png' %}">
+                        </li>
+                        <li class="list-item d-flex justify-content-center">
+                            <img width="70%" src="{% static 'images/javascript.png' %}">
+                        </li>
+
+                    </ul>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %} 
+
