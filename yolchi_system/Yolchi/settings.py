@@ -39,9 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'main.apps.MainConfig',
-    'shipper.apps.ShipperConfig',
-    'driver.apps.DriverConfig',
-
+    'yol.apps.YolConfig',
+    'yuk.apps.YukConfig',
 ]
 
 MIDDLEWARE = [

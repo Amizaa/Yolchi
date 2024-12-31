@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class ShipperConfig(AppConfig):
+class YolConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'shipper'
+    name = 'yol'
