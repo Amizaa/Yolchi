@@ -178,13 +178,14 @@ h1, h2, h3, h4, h5, h6{
     background-attachment: fixed;
   }
   #display-container label::after{
-    background-color: lightblue;
+    background-color: #00337C;
     border-radius: 10px;
     content: '>> ساخت حساب کاربری <<';
     position: relative;
     width: max-content;
     height: max-content;
     color:white;
+    padding: 5px;
   }
   #display-container input{
     position: absolute;
@@ -206,4 +207,3 @@ h1, h2, h3, h4, h5, h6{
     justify-content: center;
     place-items: center;
   }
-  

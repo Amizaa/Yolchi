@@ -9020,5 +9020,17 @@ a.text-dark:hover, a.text-dark:focus {
 .text-main{
   color: var(--main) !important;
 }
+
+.btn-main {
+  color: #fff;
+  background-color: var(--main);
+  border-color: var(--main);
+}
+
+.btn-main:hover {
+  color: #fff;
+  background-color: #3d4b68;
+  border-color: #3d4b68;
+}
 /*# sourceMappingURL=bootstrap.css.map */
 
