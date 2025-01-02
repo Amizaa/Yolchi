@@ -1,3 +1,53 @@
 from django.db import models
+from django.core.exceptions import ValidationError
+from django.contrib.auth.models import User
 
-# Create your models here.
+def phone_start_with_0(value):
+    if value[0] != '0' and value[1] != 9:
+        raise ValidationError('Phone number must be started with 09')
+class Shipper(models.Model):
+    profilePicture = models.ImageField(upload_to='yuk/profile_pictures', default='profile.png')
+    phone = models.CharField(max_length=11,validators=[phone_start_with_0])
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.user.first_name} {self.user.last_name}"
+    
+class Advertisement(models.Model):
+    title = models.CharField(max_length=200)
+    shipper = models.ForeignKey(Shipper, on_delete=models.CASCADE)
+    description = models.TextField()
+    freight = models.IntegerField(null=True)
+
+    STATUS = (
+        ('P','در حال انتظار'),
+        ('A','پذیرفته شده'),
+    )
+    status = models.CharField(max_length=1,choices=STATUS)
+    date = models.DateTimeField()
+
+    def __str__(self):
+        return self.title
+    
+
+class Cargo(models.Model):
+    weight = models.FloatField()
+    type = models.CharField(max_length=200)
+    value = models.FloatField()
+    dimension = models.CharField(max_length=200)
+    special_instructions = models.TextField(blank=True)
+    advertisement = models.OneToOneField(Advertisement, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.advertisement.title} : {self.weight} کیلوگرم"
+
+
+class Route(models.Model):
+    origin = models.CharField(max_length=200)
+    destination = models.CharField(max_length=200)
+    distance = models.FloatField()
+    estimated_time = models.FloatField()
+    advertisement = models.OneToOneField(Advertisement, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.advertisement.title} : {self.origin} به {self.destination}"
