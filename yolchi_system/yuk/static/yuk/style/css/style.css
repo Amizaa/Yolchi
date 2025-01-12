@@ -149,11 +149,6 @@ h1, h2, h3, h4, h5, h6{
   outline-offset: 5px;
 }
 
-.footer{
-  position: fixed;
-  width: 100%;
-  bottom: 0;
-}
 
 .btn-outline-main {
   color: var(--main);
@@ -179,4 +174,5 @@ h1, h2, h3, h4, h5, h6{
   background-color: #3d4b68;
   border-color: #3d4b68;
 }
+
 

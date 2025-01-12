@@ -1,4 +1,4 @@
-{% extends "base-yol.html" %}
+{% extends "base-yuk.html" %}
 
 {% load static%}
 
@@ -11,7 +11,7 @@
     
     <div class="container">
         <div class="d-flex justify-content-center  mb-4">
-            <img src="{% static 'yuk/images/person.png' %}" alt="Profile picture" class="rounded-circle border" width="200" height="200">
+            <img src="{% static 'yol/images/person.png' %}" alt="Profile picture" class="rounded-circle border" width="200" height="200">
         </div>
 
         <form>
@@ -32,11 +32,6 @@
                     <input type="text" class="form-control" id="lastname" placeholder=" ">
                     </div>
                 </div>
-
-                <div class="mb-3">
-                  <label for="LicenseCode" class="form-label">شماره گواهینامه</label>
-                  <input type="text" class="form-control" id="License-code" placeholder=" ">
-                </div>
             </fieldset>
 
             <div class="row">
@@ -47,7 +42,7 @@
     
                 <div class="mb-3 col-md-6">
                   <label for="phone" class="form-label">تلفن همراه</label>
-                  <input type="tel" class="form-control" id="phone" placeholder=" ">
+                  <input type="text" class="form-control" id="phone" placeholder=" ">
                 </div>
             </div>
 
@@ -64,7 +59,7 @@
             </div>
             
             <div class="d-grid">
-              <button type="submit" class="btn btn-main">ذخیره تغییرات</button>
+              <button type="submit" class="btn btn-info">ذخیره تغییرات</button>
             </div>
           </form>
         

@@ -23,7 +23,7 @@ class Advertisement(models.Model):
         ('P','در حال انتظار'),
         ('A','پذیرفته شده'),
     )
-    status = models.CharField(max_length=1,choices=STATUS)
+    status = models.CharField(max_length=1,choices=STATUS,default='P')
     date = models.DateTimeField()
 
     def __str__(self):
