@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>انتخاب مقصد و مبدا</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://static.neshan.org/sdk/leaflet/1.4.0/leaflet.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css">
+    <link rel="stylesheet" href="{% static 'yuk/style/js/dist/leaflet.awesome-markers.css' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'yuk/images/favicon.png' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'yuk/bootstrap/css/bootstrap.min.css' %}">
+    <script src="https://static.neshan.org/sdk/leaflet/1.4.0/leaflet.js" type="text/javascript"></script>
+<style>
+
+    table, th, td {
+  border: 1px solid black;
+}
+</style>
+</head>
+
+<body>
+
+    <div id="map" 
+        style="cursor:pointer; position: absolute;z-index: 1; width: 99%; height: 98%; background: #eee; border: 2px solid #aaa;"></div>
+    <div
+        style="position: absolute;z-index: 2;width:fit-content;border: 2px solid purple;height: fit-content;margin-left: 10px;margin-top: 5%;opacity: 0.9;"
+        class="p-3 bg-white">
+        <button id="start" class="btn btn-outline-info" onclick="reset()">شروع</button>
+        <button id="marker" class="btn btn-outline-danger"  onclick="changeMarker()" disabled>--</button>
+        <p id="help" dir="rtl" class="mt-2">برای مشخص کردن مبدا و مقصد، گزینه "شروع" را فشار دهید.</p>
+        <pre id="origins">مبدا:</pre>
+        <pre id="destinations">مقصد:</pre>
+        <br>
+        <button id="eta" class="btn btn-primary" onclick="eta()" disabled>تایید</button>
+        <br>
+        <table id="result">
+
+        </table>
+
+
+    </div>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="{% static 'yuk/style/js/dist/leaflet.awesome-markers.js' %}"></script>
+    <script src="{% static 'yuk/style/js/map.js' %}" type="text/javascript"></script>
+</body>
+
+</html>
