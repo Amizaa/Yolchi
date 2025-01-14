@@ -1,0 +1,54 @@
+{% extends "base-yol.html" %}
+
+{% load static%}
+
+{% block title %}
+    اطلاعات خودرو 
+{% endblock %}
+
+{% block content %}
+    <h5 class="text-end border-bottom py-2 mb-4">اطلاعات خودرو</h5>
+    
+    <div class="container">
+
+        <form>
+        
+            <div class="mb-3">
+                <label for="model" class="form-label">مدل خودرو</label>
+                <input type="text" class="form-control" id="model" placeholder="مثال: پیکان وانت">
+            </div>
+
+            <div class="row">
+                <div class="mb-3 col-md-5">
+                    <label for="year" class="form-label">سال ساخت</label>
+                    <input type="number" class="form-control" id="year" >
+                </div>
+                
+                <div class="mb-3 col-md-5">
+                    <label for="capacity" class="form-label">ظرفیت</label>
+                    <input type="text" class="form-control" id="capacity" placeholder="کیلوگرم">
+                </div>
+
+                
+            </div>
+            
+            <div class="mb-3 col-md-3">
+                <label for="exampleFormControlSelect1">نوع باربر</label>
+                <select class="form-control" id="exampleFormControlSelect1">
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                </select>
+            </div>
+            
+            <div class="d-grid">
+              <button type="submit" class="btn btn-main">ذخیره تغییرات</button>
+            </div>
+          </form>
+        
+    </div>
+
+
+{% endblock %}

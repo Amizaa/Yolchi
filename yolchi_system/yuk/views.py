@@ -3,15 +3,16 @@ from django.shortcuts import render
 def profile(request):
     return render(request, "yuk/profile.html")
 
-def loadAnnoucement(request):
-    return render(request, "yuk/load-announcement.html")
+def registerAds(request):
+    return render(request, "yuk/register-ad.html")
 
 def route(request):
     return render(request, "yuk/route.html")
 
 def advertisements(request):
-    return render(request, "yuk/advertisements.html")
+    return render(request, "yuk/my-ads.html")
 
 def waybills(request):
-    return render(request, "yuk/waybill.html")
+    return render(request, "yuk/my-waybills.html")
+
 # Create your views here.

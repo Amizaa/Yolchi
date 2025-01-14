@@ -1,0 +1,81 @@
+{% extends "base-yol.html" %}
+
+{% load static%}
+
+{% block title %}
+    بار من    
+{% endblock %}
+
+
+{% block content %}
+    <h5 class="text-end border-bottom py-2 mb-4">بار من</h5>
+
+    <h4 class="text-center my-4">بار تبریز - ارومیه</h4>
+
+    <div class="shadow mb-4 p-4">
+        <h5 class="text-center text-muted mb-4">اطلاعات بار</h5>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="d-grid col-md-6 mb-2">
+                    <button type="submit" class="btn btn-main">اتمام بارگیری</button>
+                </div>
+                <div class="d-grid col-md-6 mb-2">
+                    <button type="submit" class="btn btn-success">تحویل بار</button>
+                </div>
+            </div>
+        </div>
+
+        <form class="my-4">
+            <p class="text-danger">در صورت بروز هرگونه مشکل یا اتفاقی که در روند حمل بار اختلالی ایجاد میکند، گزارش خود را اعلام کنید</p>
+            <div class="mb-3">
+                <label for="exampleFormControlSelect1">نوع گزارش</label>
+                <select class="form-control my-3" id="exampleFormControlSelect1">
+                  <option>تصادف</option>
+                  <option>سرقت از محموله</option>
+                  <option>خرابی خودروی باربر</option>
+                  <option>آب و هوای نامساعد</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <textarea class="form-control" id="description" rows="5" placeholder="توضیحات گزارش را وارد کنید"></textarea>
+            </div>
+            <button type="button" class="btn btn-danger">ثبت گزارش</button>
+        </form>
+    </div>
+
+
+
+
+        <div class="shadow mt-4 p-4">
+            <h5 class="text-center text-danger mb-4">گزارشات</h5>
+    
+            <div class="container">
+                <h6>گزارش 1</h6>
+                <hr>
+                <form class="my-4">
+                    <div class="mb-3">
+                        <label for="exampleFormControlSelect1">وضعیت گزارش</label>
+                        <select class="form-control my-3" id="exampleFormControlSelect1">
+                          <option>در حال پیگیری</option>
+                          <option>رفع گزارش و ادامه مسیر</option>
+                          <option>عدم توانایی در حمل بار</option>
+                        </select>
+                    </div>
+                    <button type="button" class="btn btn-outline-danger">اعمال تغییرات</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="d-grid mt-4">
+            <h6 class="mb-2">جهت مشاهده بارنامه کلیک کنید</h6>
+            <button type="submit" class="btn btn-outline-main">مشاهده بارنامه</button>
+        </div>
+
+
+
+
+
+
+
+{% endblock %}

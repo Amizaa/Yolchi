@@ -4,22 +4,22 @@ document.getElementById('sidebar-toggle').addEventListener('click', function() {
 });
 
 
-document.addEventListener('DOMContentLoaded', function() {
+// document.addEventListener('DOMContentLoaded', function() {
 
-    const items = document.querySelectorAll('.list-group-item');
+//     const items = document.querySelectorAll('.list-group-item');
 
-    items.forEach(item => {
-        item.addEventListener('click', function(event) {
-            event.preventDefault(); 
-
-
-            items.forEach(li => li.classList.remove('active'));
+//     items.forEach(item => {
+//         item.addEventListener('click', function(event) {
+//             event.preventDefault(); 
 
 
-            this.classList.add('active');
-        });
-    });
-});
+//             items.forEach(li => li.classList.remove('active'));
+
+
+//             this.classList.add('active');
+//         });
+//     });
+// });
 
 
 
