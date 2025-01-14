@@ -1,0 +1,35 @@
+{% extends "base-yuk.html" %}
+
+{% load static%}
+
+{% block title %}
+    بارنامه های من 
+{% endblock %}
+
+{% block content %}
+    <h5 class="text-end border-bottom py-2 mb-4">بارنامه های من</h5>
+    
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+
+            <div class="card col-5 m-3">
+                <div class="card-body p-4">
+                  <h4 class="card-title text-center">title</h4>
+                  <hr>
+                  <h6 class="card-subtitle mb-3 text-muted"><span class="text-info">مبدا: </span>تبریز</h6>
+                  <h6 class="card-subtitle mb-3 text-muted"><span class="text-info">مقصد: </span>ارومیه</h6>
+                  <p class="mb-3"><span class="text-info">وضعیت: </span>در حال بارگیری</p>
+                  <p class="mb-3"><span class="text-info">تاریخ بارگیری: </span>1400.01.01</p>
+                  <p class="mb-3"><span class="text-info">تاریخ تحویل بار: </span>1400.01.02</p>
+                  <a href="#" class="btn btn-outline-info m-3 d-flex justify-content-center">چاپ بارنامه</a>
+                  <a href="#" class="btn btn-danger m-3  d-flex justify-content-center" >مشاهده گزارش</a>
+                </div>
+            </div>
+            
+
+        </div>
+        
+    </div>
+
+
+{% endblock %}

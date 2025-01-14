@@ -8,4 +8,10 @@ def loadAnnoucement(request):
 
 def route(request):
     return render(request, "yuk/route.html")
+
+def advertisements(request):
+    return render(request, "yuk/advertisements.html")
+
+def waybills(request):
+    return render(request, "yuk/waybill.html")
 # Create your views here.
