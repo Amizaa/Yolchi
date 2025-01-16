@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% load static%}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="{% static 'yol/bootstrap/css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="{% static 'yol/style/css/style.css' %}">
+  <link rel="icon" type="image/x-icon" href="{% static 'yol/images/favicon.png' %}">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <title>آگهی های اعلام بار</title>
+</head>
+
+<body>
+  <style>
+    .nav-item a:hover{
+      text-decoration: none;
+    }
+    .img-thumbnail{
+      border: none;
+    }
+  </style>
+
+  <nav class="navbar navbar-expand navbar-light shadow-sm px-4 d-flex justify-content-center">
+    <div>
+      <ul class="navbar-nav mr-auto ">
+        <li class="nav-item">
+          <a class="nav-link mx-2" href="/">صفحه اصلی</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link mx-2" href="/yol/profile">پروفایل</a>
+        </li>
+      </ul>
+    </div>
+    <br>
+
+  </nav>
+  
+  
+  <div class="fix-sidebar bg-white">
+    <ul class="navbar-nav" style="float: right;">
+
+        <input class="form-control" type="search" placeholder="جست و جو در آگهی ها">
+
+      <h5 class="text-center text-muted">فیلتر جست و جو</h5>
+      <li class="nav-item">
+        <a class="nav-link text-muted" data-toggle="collapse" href="#collapse1" role="button" aria-expanded="false" aria-controls="collapseExample">
+          &#x25BC; شهر مبدا 
+        </a>
+        <div class="collapse" id="collapse1">
+          <div class="card card-body">
+            <input type="text" class="form-control" id="origin" placeholder="تعیین شهر مبدا">
+          </div>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-muted" data-toggle="collapse" href="#collapse2" role="button" aria-expanded="false" aria-controls="collapseExample">
+          &#x25BC; شهر مقصد 
+        </a>
+        <div class="collapse" id="collapse2">
+          <div class="card card-body">
+            <input type="text" class="form-control" id="destination" placeholder="تعیین شهر مقصد">
+          </div>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-muted" data-toggle="collapse" href="#collapse3" role="button" aria-expanded="false" aria-controls="collapseExample">
+          &#x25BC; وزن بار  
+        </a>
+        <div class="collapse" id="collapse3">
+          <div class="card card-body">
+            <label for="min-weight" class="form-label">حداقل</label>
+            <input type="number" class="form-control" id="min-weight" placeholder="مثال: 1000 کیلوگرم">
+            <label for="max-weight" class="form-label">حداکثر</label>
+            <input type="number" class="form-control" id="max-weight" placeholder="مثال: 2000 کیلوگرم">
+          </div>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-muted" data-toggle="collapse" href="#collapse4" role="button" aria-expanded="false" aria-controls="collapseExample">
+          &#x25BC;  کرایه حمل 
+        </a>
+        <div class="collapse" id="collapse4">
+          <div class="card card-body">
+            <label for="min-freight" class="form-label">حداقل</label>
+            <input type="number" class="form-control" id="min-freight" placeholder="مثال: 10 میلیون">
+            <label for="max-freight" class="form-label">حداکثر</label>
+            <input type="number" class="form-control" id="max-freight" placeholder="مثال: 20 میلیون">
+          </div>
+        </div>
+      </li>
+      <button class="btn btn-outline-main my-2" type="submit">جست و جو</button>
+    </ul>
+  </div>
+
+  <div class="content">
+    <h4 class="text-info">نتایج جست و جو</h4>
+
+    <div class="row d-flex justify-content-center mt-4">
+      
+        <div class="col-md-3 p-3 m-3 shadow-sm border" data-toggle="modal" data-target="#exampleModalCenter" role="button">
+          <div class="card-body p-2">
+            <h4 class="card-title text-center mb-4">بار تهران ارومیه</h4>
+            <p class="mb-3"><span class="text-info">توضیحات: </span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem, eligendi. A aliquid molestiae blanditiis ipsam natus excepturi fuga itaque et ad veniam eveniet, sapiente sit ullam sunt doloremque placeat doloribus?</p>
+            <p class="mb-3"><span class="text-info">کرایه حمل: </span>10 میلیون تومان</p>
+            <div class="row">
+              <img class="img-thumbnail" src="{% static 'yol/images/transport.png' %}" alt="" srcset="">
+              <div class="col-6 text-end text-primary"><h4>تهران</h4></div>
+              <div class="col-6 text-start text-danger"><h4>ارومیه</h4></div>
+            </div>
+            <p class="text-center">1403.10.10</p>
+          </div>
+        </div>
+        
+        <div class="col-md-3 p-3 m-3 shadow-sm border" data-toggle="modal" data-target="#exampleModalCenter" role="button">
+          <div class="card-body p-2">
+            <h4 class="card-title text-center mb-4">بار تهران ارومیه</h4>
+            <p class="mb-3"><span class="text-info">توضیحات: </span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem, eligendi. A aliquid molestiae blanditiis ipsam natus excepturi fuga itaque et ad veniam eveniet, sapiente sit ullam sunt doloremque placeat doloribus?</p>
+            <p class="mb-3"><span class="text-info">کرایه حمل: </span>10 میلیون تومان</p>
+            <div class="row">
+              <img class="img-thumbnail" src="{% static 'yol/images/transport.png' %}" alt="" srcset="">
+              <div class="col-6 text-end text-primary"><h4>تهران</h4></div>
+              <div class="col-6 text-start text-danger"><h4>ارومیه</h4></div>
+            </div>
+            <p class="text-center">1403.10.10</p>
+          </div>
+        </div>
+        
+        <div class="col-md-3 p-3 m-3 shadow-sm border" data-toggle="modal" data-target="#exampleModalCenter" role="button">
+          <div class="card-body p-2">
+            <h4 class="card-title text-center mb-4">بار تهران ارومیه</h4>
+            <p class="mb-3"><span class="text-info">توضیحات: </span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem, eligendi. A aliquid molestiae blanditiis ipsam natus excepturi fuga itaque et ad veniam eveniet, sapiente sit ullam sunt doloremque placeat doloribus?</p>
+            <p class="mb-3"><span class="text-info">کرایه حمل: </span>10 میلیون تومان</p>
+            <div class="row">
+              <img class="img-thumbnail" src="{% static 'yol/images/transport.png' %}" alt="" srcset="">
+              <div class="col-6 text-end text-primary"><h4>تهران</h4></div>
+              <div class="col-6 text-start text-danger"><h4>ارومیه</h4></div>
+            </div>
+            <p class="text-center">1403.10.10</p>
+          </div>
+        </div>
+
+        <div class="col-md-3 p-3 m-3 shadow-sm border" data-toggle="modal" data-target="#exampleModalCenter" role="button">
+          <div class="card-body p-2">
+            <h4 class="card-title text-center mb-4">بار تهران ارومیه</h4>
+            <p class="mb-3"><span class="text-info">توضیحات: </span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem, eligendi. A aliquid molestiae blanditiis ipsam natus excepturi fuga itaque et ad veniam eveniet, sapiente sit ullam sunt doloremque placeat doloribus?</p>
+            <p class="mb-3"><span class="text-info">کرایه حمل: </span>10 میلیون تومان</p>
+            <div class="row">
+              <img class="img-thumbnail" src="{% static 'yol/images/transport.png' %}" alt="" srcset="">
+              <div class="col-6 text-end text-primary"><h4>تهران</h4></div>
+              <div class="col-6 text-start text-danger"><h4>ارومیه</h4></div>
+            </div>
+            <p class="text-center">1403.10.10</p>
+          </div>
+        </div>
+
+      </div>
+      
+      
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">بار تهران ارومیه</h5>
+            </div>
+            <div class="modal-body">
+              <div class="card-body p-4">
+                <p class="mb-3"><span class="text-info">آدرس مبدا: </span>تهران</p>
+                <p class="mb-3"><span class="text-info">آدرس مقصد: </span>ارومیه</p>
+                <p class="mb-3"><span class="text-info">توضیحات: </span>بار میوه و تره بار به ارومیه</p>
+                <p class="mb-3"><span class="text-info">فاصله مبدا تا مقصد: </span>400 کیلومتر</p>
+                <p class="mb-3"><span class="text-info">   زمان تخمین زده شده: </span>2 روز</p>
+                <p class="mb-3"><span class="text-info"> نوع بار: </span>میوه و تره بار</p>
+                <p class="mb-3"><span class="text-info"> وزن بار: </span>1000 کیلوگرم</p>
+                <p class="mb-3"><span class="text-info"> ارزش تقریبی بار: </span>10 میلیون تومان</p>
+                <p class="mb-3"><span class="text-info"> اندازه بار: </span>1*1 متر</p>
+                <p class="mb-3"><span class="text-info"> دستورالعمل خاص: </span>باربر باید یخچال داشته باشد</p>
+                <p class="mb-3"><span class="text-info">صاحب بار: </span>عرفان صمدی</p>
+                <p class="mb-3"><span class="text-info">صاحب شماره تماس بار: </span>09122222222</p>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">بستن</button>
+              <button type="button" class="btn btn-info" >پذیرفتن بار</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+    
+    </div>
+  </div>
+
+  
+
+
+
+</body>
+</html>
+
+
+   
+
+
+

@@ -14,5 +14,7 @@ def waybills(request):
 def cargo(request):
     return render(request, "yol/my-cargo.html")
 
+def ads(request):
+    return render(request, "yol/ads.html")
 
 # Create your views here.
