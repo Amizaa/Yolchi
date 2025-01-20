@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'main.apps.MainConfig',
     'yol.apps.YolConfig',
     'yuk.apps.YukConfig',
+    "bootstrap5",
 ]
 
 MIDDLEWARE = [
