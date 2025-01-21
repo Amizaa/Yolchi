@@ -11,15 +11,17 @@
       
         <div class="d-lg-flex justify-content-around collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav ms-auto d-flex align-items-center">
+            {% if auth %}
             <li class="nav-item dropdown">
               <a class="nav-link mx-2 dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <img src="{% static 'main/images/person.png' %}" class="rounded-circle bg-main" height="40">
+                <img src="{{image_url}}" class="rounded-circle bg-main" height="40">
              </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <li><a class="dropdown-item" href="#">پروفایل</a></li>
-                <li><a class="dropdown-item" href="#">خروج از حساب کاربری</a></li>
+                <li><a class="dropdown-item" href="{% if app == 'YOL' %} {% url 'yol:profile' %} {% else %} {% url 'yuk:profile' %} {% endif %}">پروفایل</a></li>
+                <li><a class="dropdown-item" href="{% url 'main:signuot' %}">خروج از حساب کاربری</a></li>
               </ul>
             </li>
+            {% endif %}
             <li class="nav-item">
               <a  class="nav-link mx-2" aria-current="page" id="home" href="{%url 'main:home' %}">خانه</a>
             </li>
@@ -28,8 +30,8 @@
                  برنامه ها
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <li><a class="dropdown-item" href="#">یول (ویژه رانندگان)</a></li>
-                <li><a class="dropdown-item" href="#">یوک (ویژه صاحبان بار)</a></li>
+                <li><a class="dropdown-item" href="{%url 'yol:profile' %}">یول (ویژه رانندگان)</a></li>
+                <li><a class="dropdown-item" href="{%url 'yuk:profile' %}">یوک (ویژه صاحبان بار)</a></li>
               </ul>
             </li>
             <li class="nav-item">

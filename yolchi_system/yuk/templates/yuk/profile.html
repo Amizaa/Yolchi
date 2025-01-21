@@ -7,29 +7,44 @@
 {% endblock %}
 
 {% block content %}
+{% load bootstrap5%}
+
+  {% if messages %}
+    <script>
+        {% for message in messages %}
+          {%  if forloop.first  %}
+            alert("{{message}}");
+          {% endif %}
+        {% endfor %}
+    </script>
+  {% endif %}
+
     <h5 class="text-end border-bottom py-2 mb-4">پروفایل</h5>
     
     <div class="container">
         <div class="d-flex justify-content-center  mb-4">
-            <img src="{% static 'yol/images/person.png' %}" alt="Profile picture" class="rounded-circle border" width="200" height="200">
+            <img src="{{image_url}}" alt="Profile picture" class="rounded-circle border" width="200" height="200">
         </div>
 
-        <form>
+        <form class="my-4" enctype="multipart/form-data" method="post"><input type='hidden'/>
+          {% bootstrap_form form %}
+          {% csrf_token %}
+          
             <fieldset disabled>
                 <div class="mb-3">
                 <label for="username" class="form-label">نام کاربری</label>
-                <input type="text" class="form-control" id="username" placeholder=" ">
+                <input type="text" class="form-control" id="username" value="{{username}}">
                 </div>
 
                 <div class="row">
                     <div class="mb-3 col-md-6">
                     <label for="firstname" class="form-label">نام</label>
-                    <input type="text" class="form-control" id="firstname" placeholder=" " >
+                    <input type="text" class="form-control" id="firstname" value="{{firstname}}" >
                     </div>
 
                     <div class="mb-3 col-md-6">
                     <label for="lastname" class="form-label">نام خانوادگی</label>
-                    <input type="text" class="form-control" id="lastname" placeholder=" ">
+                    <input type="text" class="form-control" id="lastname" value="{{lastname}}">
                     </div>
                 </div>
             </fieldset>
@@ -37,31 +52,38 @@
             <div class="row">
                 <div class="mb-3 col-md-6">
                   <label for="email" class="form-label"> پست الکترونیکی</label>
-                  <input type="email" class="form-control" id="email" placeholder=" ">
+                  <input type="email" class="form-control" name="email" id="email" value="{{email}}">
                 </div>
     
                 <div class="mb-3 col-md-6">
                   <label for="phone" class="form-label">تلفن همراه</label>
-                  <input type="text" class="form-control" id="phone" placeholder=" ">
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="mb-3 col-md-6">
-                  <label for="password" class="form-label">تغییر رمز عبور</label>
-                  <input type="password" class="form-control" id="password" placeholder=" " >
-                </div>
-                
-                <div class="mb-3 col-md-6">
-                  <label for="password" class="form-label">تأیید رمز عبور</label>
-                  <input type="password" class="form-control" id="password" placeholder=" " >
+                  <input type="text" class="form-control" name="phone" id="phone" value="{{phone}}">
                 </div>
             </div>
             
             <div class="d-grid">
-              <button type="submit" class="btn btn-info">ذخیره تغییرات</button>
+              <button type="submit" class="btn btn-info" name="info">ذخیره تغییرات</button>
             </div>
           </form>
+
+          <form class="my-4" action="" method="post"><input type='hidden'/>
+            {% csrf_token %}
+              <div class="row">
+                  <div class="mb-3 col-md-6">
+                    <label for="password" class="form-label">تغییر رمز عبور</label>
+                    <input type="password" class="form-control" name="password1" id="password">
+                  </div>
+                  
+                  <div class="mb-3 col-md-6">
+                    <label for="password" class="form-label">تأیید رمز عبور</label>
+                    <input type="password" class="form-control" name="password2" id="password">
+                  </div>
+              </div>
+              
+              <div class="d-grid">
+                <button type="submit" class="btn btn-main" name="pass">تغییر رمز عبور</button>
+              </div>
+            </form>
         
     </div>
 

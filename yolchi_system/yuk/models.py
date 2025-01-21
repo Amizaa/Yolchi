@@ -7,7 +7,7 @@ def phone_start_with_0(value):
         raise ValidationError('Phone number must be started with 09')
 
 class Shipper(models.Model):
-    profilePicture = models.ImageField(upload_to='yuk/profile_pictures', default='profile.png')
+    profilePicture = models.ImageField(upload_to='yuk_pictures/', default='yuk_pictures/profile.png')
     phone = models.CharField(max_length=11,validators=[phone_start_with_0])
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 

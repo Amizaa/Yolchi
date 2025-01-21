@@ -3,20 +3,38 @@ from django.http import HttpResponse
 from django.template import loader
 
 from .models import CustomUser
+from yuk.models import Shipper
 from .forms import UserForm, UserRegistrationForm
 from django.contrib import messages
 from django.contrib.auth import logout, login, authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 
+def user_information(user):
+        context = {
+            'auth': True,
+            'image_url': Shipper.objects.get(user=user).profilePicture.url,
+            'app': CustomUser.objects.get(user=user).app
+        }
+        return context
+
 def home(request):
-    return render(request, "main/home.html")
+    if request.user.is_authenticated:
+        return render(request, 'main/home.html', user_information(request.user))
+    else:
+        return render(request, "main/home.html",{'auth':False})
 
 def about(request):
-    return render(request, "main/about.html")
+    if request.user.is_authenticated:
+        return render(request, 'main/about.html', user_information(request.user))
+    else:
+        return render(request, "main/about.html",{'auth':False})
 
 def contact(request):
-    return render(request, "main/contact.html")
+    if request.user.is_authenticated:
+        return render(request, 'main/contact.html', user_information(request.user))
+    else:
+        return render(request, "main/contact.html",{'auth':False})
 
 def signin(request):
         if request.method == "POST":
@@ -53,29 +71,46 @@ def signup(request):
         password = request.POST['password']
         email = request.POST['email']
         user_type = request.POST['userType']
-        newuser = User.objects.create_user(
-            first_name = first_name,
-            last_name = last_name,
-            username = username,
-            password = password,
-            email = email
-        )
 
-        try:
-            newuser.save()
-            if user_type == 'driver':
-                CustomUser.objects.create(user=newuser,app='YOL')
-                return redirect('yol:profile')
-            else :
-                CustomUser.objects.create(user=newuser,app='YUK')
-                return redirect('yuk:profile')
+        if User.objects.filter(username=username).exists() :
+            messages.error(request, 'نام کاربری قبلا انتخاب شده است')
 
-        except:
-            return HttpResponse("خطایی رخ داده است")
+        else:
+        
+            newuser = User.objects.create_user(
+                first_name = first_name,
+                last_name = last_name,
+                username = username,
+                password = password,
+                email = email
+            )
+
+            try:
+                newuser.save()
+                
+                user = authenticate(
+                    request,
+                    username=username,
+                    password=password
+                )
+                login(request, user)
+
+                if user_type == 'driver':
+                    CustomUser.objects.create(user=newuser,app='YOL')
+                    return redirect('yol:profile')
+                else :
+                    CustomUser.objects.create(user=newuser,app='YUK')
+                    Shipper.objects.create(user=newuser)
+                    return redirect('yuk:profile')
+
+            except:
+                return HttpResponse("خطایی رخ داده است")
     else:
         form = UserRegistrationForm()
         return render(request, 'main/signup.html', {'form': form})
 
-
+def signout(request):
+    logout(request)
+    return redirect('main:home')
 
 # Create your views here.
