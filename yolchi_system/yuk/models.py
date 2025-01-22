@@ -25,7 +25,7 @@ class Advertisement(models.Model):
         ('A','پذیرفته شده'),
     )
     status = models.CharField(max_length=1,choices=STATUS,default='P')
-    date = models.DateTimeField()
+    date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.title
@@ -49,10 +49,10 @@ class Cargo(models.Model):
 class Route(models.Model):
     origin = models.CharField(max_length=200)
     destination = models.CharField(max_length=200)
-    dest_city =  models.CharField(max_length=200, null=True, blank=True)
-    origin_city =  models.CharField(max_length=200,null=True, blank=True)
-    distance = models.FloatField()
-    estimated_time = models.FloatField()
+    dest_city =  models.CharField(max_length=200)
+    origin_city =  models.CharField(max_length=200)
+    distance = models.CharField(max_length=200)
+    estimated_time = models.CharField(max_length=200)
     advertisement = models.OneToOneField(Advertisement, on_delete=models.CASCADE)
 
     def __str__(self):

@@ -33,8 +33,19 @@
         <p id="help" dir="rtl" class="mt-2">برای مشخص کردن مبدا و مقصد، گزینه "شروع" را فشار دهید.</p>
         <pre id="origins">مبدا:</pre>
         <pre id="destinations">مقصد:</pre>
+        <pre id="duration">زمان:</pre>
+        <pre id="distance">مسافت:</pre>
         <br>
-        <button id="eta" class="btn btn-primary" onclick="eta()" disabled>تایید</button>
+        <form action="" method="post" ><input type='hidden'/>
+            {% csrf_token %}
+            <input type="text" id="o-city" name="o-city" style="display:none;">
+            <input type="text" id="d-city" name="d-city" style="display:none;">
+            <input type="text" id="o-ad" name="o-ad" style="display:none;">
+            <input type="text" id="d-ad" name="d-ad" style="display:none;">
+            <input type="text" id="dur" name="dur" style="display:none;">
+            <input type="text" id="dis" name="dis" style="display:none;">
+            <button type="submit" id="eta" class="btn btn-primary" disabled>تایید</a>
+        </form>
         <br>
         <table id="result">
 

@@ -1,3 +1,4 @@
+
 //init the map
 var myMap = new L.Map('map', {
     key: 'web.9b465fd6aff4474584be621d67b6d894',
@@ -8,14 +9,22 @@ var myMap = new L.Map('map', {
     zoom: 14
 });
 var help = document.getElementById("help");
-//marker layers
 
 var originMarker = ''
 var destinationMarker = ''
 var resultMatrix = [];
 var flag = false;
 var markerIsOrigin = true;
-//adding on map click listner
+
+var originAddress = ''
+var destAddress = ''
+var originCity = ''
+var destCity = ''
+var duration = ''
+var distance = ''
+var originLoc = []
+var destLoc = []
+
 myMap.on('click', async function (e) {
     //is start button is clicked
     if (flag) {
@@ -34,12 +43,15 @@ myMap.on('click', async function (e) {
                 })
             }).addTo(myMap);
             try {
-                const location = await getLocation(originMarker);
-                document.getElementById("origins").innerHTML =  "<b>مبدا: </b> " + location;
+                const res = await getLocation(originMarker);
+                originAddress = res[0]
+                originCity = res[1]
+                document.getElementById("origins").innerHTML =  "<b>مبدا: </b> " + originCity + "-" + originAddress;
             } catch (error) {
                 console.error("Error fetching location:", error);
             }
         } else {
+            document.getElementById("eta").disabled = false;
             if (destinationMarker != '') {
                 myMap.removeLayer(destinationMarker);
                 destinationMarker = '';
@@ -55,13 +67,26 @@ myMap.on('click', async function (e) {
                 })
             }).addTo(myMap);
             try {
-                const location = await getLocation(destinationMarker);
-                document.getElementById("destinations").innerHTML = "<b>مقصد: </b> " + location;
+                const res = await getLocation(destinationMarker);
+                destAddress = res[0]
+                destCity = res[1]
+                document.getElementById("destinations").innerHTML = "<b>مقصد: </b> " + destCity + "-" + destAddress;
             } catch (error) {
                 console.error("Error fetching location:", error);
             }
 
+            try {
+                const res = await getDuration()
+                duration = res[0]
+                distance = res[1]
+                document.getElementById("duration").innerHTML = "<b>زمان: </b> " + duration ;
+                document.getElementById("distance").innerHTML = "<b>مسافت: </b> " + distance ;
+            } catch (error) {
+                console.error("Error fetching location:", error);
+            }
 
+            finish()
+            
         }
     }
 });
@@ -86,21 +111,32 @@ function reset() {
 
 }
 //send http get request to distance matrix api
-function eta() {
-    help.textContent = "برای شروع دوباره گزینه 'دوباره' را فشار دهید."
-    document.getElementById("eta").disabled = true;
+function finish() {
     flag = false;
-    //making the url
-    var destination = "";
-    var origin = "";
 
-    
+    document.getElementById('o-ad').value = originAddress
+    document.getElementById('d-ad').value = destAddress
+    document.getElementById('o-city').value = originCity
+    document.getElementById('d-city').value = destCity
+    document.getElementById('dur').value = duration
+    document.getElementById('dis').value = distance
+
+    // var data = {
+    //     "origin_ad": originAddress,
+    //     "destination_ad": destAddress,
+    //     "origin_city": originCity,
+    //     "destination_city": destCity,
+    //     "duration": duration,
+    //     "distance": distance,
+    //     "origin_location": originLoc,
+    //     "destination_location": destLoc,
+    // }
+
 }
 
 // origin or destination marker
 function changeMarker() {
     if (markerIsOrigin) {
-        document.getElementById("eta").disabled = false;
         help.textContent = "لطفا مقصد را انتخاب کنید.برای تغییر مبدا دکمه 'مبدا' فشار دهید.";
         document.getElementById("marker").textContent = "مبدا";
         markerIsOrigin = false;
@@ -115,8 +151,18 @@ async function getLocation(marker){
     let lat = marker.getLatLng().lat
     let lng = marker.getLatLng().lng
 
+    if(markerIsOrigin){
+        originLoc = []
+        originLoc.push(lat)
+        originLoc.push(lng)
+    }else{
+        destLoc = []
+        destLoc.push(lat)
+        destLoc.push(lng)
+    }
+
     var url = `https://api.neshan.org/v5/reverse?lat=${lat}&lng=${lng}`
-    //urlencode the url
+    
     url = encodeURI(url);
     var params = {
         headers: {
@@ -127,16 +173,34 @@ async function getLocation(marker){
 
     try {
         const response = await axios.get(url, params);
-        return response.data.formatted_address; 
+        if (response.data.city == null){return [response.data.formatted_address, response.data.county];}
+        else {return [response.data.formatted_address, response.data.city];}
+         
     } catch (err) {
         console.error("Error fetching location:", err);
         throw err; 
     }
 
 
-
 }
 
+async function getDuration(){
+    var url = `https://api.neshan.org/v4/direction?type=car&origin=${originLoc[0]},${originLoc[1]}&destination=${destLoc[0]},${destLoc[1]}&avoidTrafficZone=false&avoidOddEvenZone=false&alternative=false&bearing=0`
 
+    url = encodeURI(url);
+    var params = {
+        headers: {
+            'Api-Key': 'service.611c3f1549e94ae9aad6544b06fbf6d7'
+        },
 
+    };
 
+    try {
+        const response = await axios.get(url, params);
+        return [response.data.routes[0].legs[0].duration.text , response.data.routes[0].legs[0].distance.text]  
+    } catch (err) {
+        console.error("Error fetching location:", err);
+        throw err; 
+    }
+
+}

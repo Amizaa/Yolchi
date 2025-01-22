@@ -1,11 +1,12 @@
-from django.shortcuts import render,get_object_or_404
+from django.shortcuts import render,redirect
 from django.contrib.auth.decorators import login_required
-from .models import Shipper
-from .forms import imageForm
+from .models import Shipper,Cargo,Advertisement,Route
+from .forms import imageForm, AdForm, CargoForm
 from django.contrib.auth.models import User
 from django.urls import reverse_lazy
 import os,re
 from django.contrib import messages
+
 
 
 
@@ -60,16 +61,82 @@ def profile(request):
     }
     return render(request, "yuk/profile.html",context) 
 
-def registerAds(request):
-    return render(request, "yuk/register-ad.html")
+@login_required(login_url=reverse_lazy("main:signin"))
+def registerAds(request,):
+    if request.method == "POST":
+        user = request.user
+        shipper = Shipper.objects.get(user=user)
 
-def route(request):
-    return render(request, "yuk/route.html")
+        title = request.POST['title']
+        description = request.POST['description']
+        freight = request.POST['freight']
 
+        ad = Advertisement.objects.create(
+            title=title,
+            shipper=shipper,
+            description=description,
+            freight=freight)
+
+        weight = request.POST['weight']
+        type = request.POST['type']
+        value = request.POST['value']
+        dimension = request.POST['dimension']
+        special_instructions = request.POST['special_instructions']
+        
+        Cargo.objects.create(
+            weight=weight,
+            type=type,
+            value=value,
+            dimension=dimension,
+            special_instructions=special_instructions,
+            advertisement = ad
+        )
+
+        return redirect('yuk:route',ad_id=ad.id)
+    else:
+        form1 = AdForm()
+        form2 = CargoForm()
+        return render(request, "yuk/register-ad.html", {'form1': form1,'form2':form2})
+        
+
+@login_required(login_url=reverse_lazy("main:signin"))
+def route(request,ad_id):
+    ad = Advertisement.objects.get(pk=ad_id)
+
+    if request.method == 'POST':
+        originCity = request.POST['o-city']
+        destCity = request.POST['d-city']
+        originAddress = request.POST['o-ad']
+        destAddress = request.POST['d-ad']
+        duration = request.POST['dur']
+        distance = request.POST['dis']
+
+        Route.objects.create(
+            origin=originAddress,
+            destination=destAddress,
+            dest_city=destCity,
+            origin_city=originCity,
+            distance=distance,
+            estimated_time=duration,
+            advertisement=ad
+        )
+        messages.success(request,"آگهی با موفقیت ثبت شد")
+        return redirect("yuk:profile")
+    else:
+        return render(request, "yuk/route.html")
+
+@login_required(login_url=reverse_lazy("main:signin"))
 def advertisements(request):
-    return render(request, "yuk/my-ads.html")
+    shipper = Shipper.objects.get(user=request.user)
+    advertisements = Advertisement.objects.filter(shipper=shipper)
+    ads = []
+    for ad in advertisements:
+        route = Route.objects.get(advertisement=ad)
+        ads.append([ad,route])
+        
+    return render(request, "yuk/my-ads.html",{'ads':ads})
 
+@login_required(login_url=reverse_lazy("main:signin"))
 def waybills(request):
     return render(request, "yuk/my-waybills.html")
 
-# Create your views here.

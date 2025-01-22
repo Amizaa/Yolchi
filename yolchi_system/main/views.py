@@ -1,19 +1,23 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from django.template import loader
 
 from .models import CustomUser
 from yuk.models import Shipper
+from yol.models import Driver
 from .forms import UserForm, UserRegistrationForm
 from django.contrib import messages
 from django.contrib.auth import logout, login, authenticate
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 
 def user_information(user):
+        if CustomUser.objects.get(user=user).app == 'YUK':
+            image = Shipper.objects.get(user=user).profilePicture
+        else:
+            image = Driver.objects.get(user=user).profilePicture
+
         context = {
             'auth': True,
-            'image_url': Shipper.objects.get(user=user).profilePicture.url,
+            'image_url': image.url,
             'app': CustomUser.objects.get(user=user).app
         }
         return context
@@ -74,6 +78,8 @@ def signup(request):
 
         if User.objects.filter(username=username).exists() :
             messages.error(request, 'نام کاربری قبلا انتخاب شده است')
+            form = UserRegistrationForm()
+            return render(request, 'main/signup.html', {'form': form})
 
         else:
         
@@ -98,11 +104,10 @@ def signup(request):
                 if user_type == 'driver':
                     CustomUser.objects.create(user=newuser,app='YOL')
                     return redirect('yol:profile')
-                else :
+                else:
                     CustomUser.objects.create(user=newuser,app='YUK')
                     Shipper.objects.create(user=newuser)
                     return redirect('yuk:profile')
-
             except:
                 return HttpResponse("خطایی رخ داده است")
     else:
