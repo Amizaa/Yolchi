@@ -6,5 +6,4 @@ urlpatterns = [
     path('car-info/', views.car, name='car'),
     path('my-waybills/', views.waybills, name='waybills'),
     path('my-cargo/', views.cargo, name='cargo'),
-    path('ads/', views.ads, name='ads'),
 ]

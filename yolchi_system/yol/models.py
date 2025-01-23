@@ -8,7 +8,7 @@ def phone_start_with_0(value):
         raise ValidationError('Phone number must be started with 09')
 
 class Driver(models.Model):
-    profilePicture = models.ImageField(upload_to='yuk/profile_pictures', default='profile.png')
+    profilePicture = models.ImageField(upload_to='yol_pictures/', default='yol_pictures/profile.png')
     phone = models.CharField(max_length=11,validators=[phone_start_with_0])
     licenseCode = models.CharField(max_length=10)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -17,7 +17,7 @@ class Driver(models.Model):
         return f"{self.user.first_name} {self.user.last_name}"
     
 class Car(models.Model):
-    model = models.CharField(max_length=200)
+    model = models.CharField(max_length=200,blank=True)
 
     TYPE = (
         ('V','وانت بار'),
@@ -25,9 +25,9 @@ class Car(models.Model):
         ('K','کامیونت'),
         ('T','تریلی'),
     )
-    type = models.CharField(max_length=1,choices=TYPE)
-    year = models.IntegerField()
-    capacity = models.IntegerField()
+    type = models.CharField(max_length=1,choices=TYPE,blank=True)
+    year = models.IntegerField(default=0)
+    capacity = models.IntegerField(default=0)
     driver = models.OneToOneField(Driver, on_delete=models.CASCADE)
 
     def __str__(self):

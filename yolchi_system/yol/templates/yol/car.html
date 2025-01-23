@@ -7,47 +7,40 @@
 {% endblock %}
 
 {% block content %}
+    {% load bootstrap5 %}
     <h5 class="text-end border-bottom py-2 mb-4">اطلاعات خودرو</h5>
     
     <div class="container">
-
-        <form>
-        
-            <div class="mb-3">
-                <label for="model" class="form-label">مدل خودرو</label>
-                <input type="text" class="form-control" id="model" placeholder="مثال: پیکان وانت">
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-2 border shadow-sm p-3 m-3 text-center">
+                <h6  class="text-info">مدل خودرو</h6>
+                <hr>
+                <p>{{model}}</p>
             </div>
-
-            <div class="row">
-                <div class="mb-3 col-md-5">
-                    <label for="year" class="form-label">سال ساخت</label>
-                    <input type="number" class="form-control" id="year" >
-                </div>
-                
-                <div class="mb-3 col-md-5">
-                    <label for="capacity" class="form-label">ظرفیت</label>
-                    <input type="text" class="form-control" id="capacity" placeholder="کیلوگرم">
-                </div>
-
-                
+            <div class="col-md-2 border shadow-sm p-3 m-3 text-center">
+                <h6  class="text-info">سال ساخت</h6>
+                <hr>
+                <p>{{year}}</p>
             </div>
-            
-            <div class="mb-3 col-md-3">
-                <label for="exampleFormControlSelect1">نوع باربر</label>
-                <select class="form-control" id="exampleFormControlSelect1">
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                  <option>5</option>
-                </select>
+            <div class="col-md-2 border shadow-sm p-3 m-3 text-center">
+                <h6  class="text-info">ظرفیت</h6>
+                <hr>
+                <p>{{capacity}} کیلوگرم</p>
             </div>
+            <div class="col-md-2 border shadow-sm p-3 m-3 text-center">
+                <h6  class="text-info">نوع باربر</h6>
+                <hr>
+                <p>{{type}}</p>
+            </div>
+        </div>
+        <form class="my-4" enctype="multipart/form-data" method="post"><input type='hidden'/>
+            {% csrf_token %}
+            {% bootstrap_form form %}
             
             <div class="d-grid">
               <button type="submit" class="btn btn-main">ذخیره تغییرات</button>
             </div>
           </form>
-        
     </div>
 
 

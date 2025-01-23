@@ -3,7 +3,7 @@ from django.http import HttpResponse
 
 from .models import CustomUser
 from yuk.models import Shipper
-from yol.models import Driver
+from yol.models import Driver, Car
 from .forms import UserForm, UserRegistrationForm
 from django.contrib import messages
 from django.contrib.auth import logout, login, authenticate
@@ -103,6 +103,8 @@ def signup(request):
 
                 if user_type == 'driver':
                     CustomUser.objects.create(user=newuser,app='YOL')
+                    driver = Driver.objects.create(user=newuser)
+                    Car.objects.create(driver=driver)
                     return redirect('yol:profile')
                 else:
                     CustomUser.objects.create(user=newuser,app='YUK')
@@ -118,4 +120,6 @@ def signout(request):
     logout(request)
     return redirect('main:home')
 
+def ads(request):
+    return render(request, "main/ads.html")
 # Create your views here.
