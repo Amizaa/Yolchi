@@ -31,7 +31,7 @@ class Advertisement(models.Model):
         return self.title
     
     class Meta:
-        ordering = ["date"]
+        ordering = ["-date"]
     
 
 class Cargo(models.Model):

@@ -9,6 +9,12 @@
 {% block content %}
     <h5 class="text-end border-bottom py-2 mb-4">آگهی های من</h5>
 
+    {% if ads|length == 0  %}
+        <br>
+        <br>
+        <h3 class="text-center my-4 text-danger">آگهی یافت نشد</h3>
+    {% endif %}
+
     <div class="container">
         <div class="row d-flex justify-content-center">
             {% for ad in ads %}

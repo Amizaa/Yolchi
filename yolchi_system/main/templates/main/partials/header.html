@@ -18,7 +18,7 @@
              </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                 <li><a class="dropdown-item" href="{% if app == 'YOL' %} {% url 'yol:profile' %} {% else %} {% url 'yuk:profile' %} {% endif %}">پروفایل</a></li>
-                <li><a class="dropdown-item" href="{% url 'main:signuot' %}">خروج از حساب کاربری</a></li>
+                <li><a class="dropdown-item" href="{% url 'main:signout' %}">خروج از حساب کاربری</a></li>
               </ul>
             </li>
             {% endif %}
@@ -33,6 +33,9 @@
                 <li><a class="dropdown-item" href="{%url 'yol:profile' %}">یول (ویژه رانندگان)</a></li>
                 <li><a class="dropdown-item" href="{%url 'yuk:profile' %}">یوک (ویژه صاحبان بار)</a></li>
               </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link mx-2"  href="{%url 'main:ads' %}">آگهی های اعلام بار</a>
             </li>
             <li class="nav-item">
               <a class="nav-link mx-2"  href="{%url 'main:about' %}">درباره ما</a>

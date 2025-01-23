@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 
 from .models import CustomUser
-from yuk.models import Shipper
+from yuk.models import Shipper,Advertisement,Route,Cargo
 from yol.models import Driver, Car
 from .forms import UserForm, UserRegistrationForm
 from django.contrib import messages
@@ -79,7 +79,7 @@ def signup(request):
         if User.objects.filter(username=username).exists() :
             messages.error(request, 'نام کاربری قبلا انتخاب شده است')
             form = UserRegistrationForm()
-            return render(request, 'main/signup.html', {'form': form})
+            return render(request, 'main/signup.html', {'form': form},)
 
         else:
         
@@ -121,5 +121,54 @@ def signout(request):
     return redirect('main:home')
 
 def ads(request):
-    return render(request, "main/ads.html")
+    if request.user.is_authenticated:
+        app = CustomUser.objects.get(user=request.user).app
+        auth = True
+        if Driver.objects.filter(user=request.user):
+            isDriver = True
+        else:
+            isDriver = False
+    else:
+        auth = False
+        isDriver = False
+        
+    if request.method == "POST":
+        search = request.POST['search']
+        origin = request.POST['origin']
+        destination = request.POST['destination']
+        minWeight = request.POST['min-weight'] if request.POST['min-weight'] else 0
+        maxWeight = request.POST['max-weight'] if request.POST['max-weight'] else 1000000
+        maxFreight = request.POST['max-freight'] if request.POST['max-freight'] else 10000000000
+        minFreight = request.POST['min-freight'] if request.POST['min-freight'] else 0
+
+
+        ads = Advertisement.objects.filter(title__icontains=search,
+                                           freight__gte=minFreight,
+                                           freight__lte=maxFreight)
+        advertisements = []
+        for ad in ads:
+            route = Route.objects.filter(advertisement=ad,
+                                         origin_city__icontains=origin,
+                                         dest_city__icontains=destination)
+            
+            cargo = Cargo.objects.filter(advertisement=ad,
+                                         weight__gte=minWeight,
+                                         weight__lte=maxWeight,)
+            if route and cargo:
+                advertisements.append([ad,route[0],cargo[0]])
+        
+        return render(request, "main/ads.html",{'ads':advertisements,'auth':auth,'isDriver': isDriver,'app':app})
+
+
+    else:
+        ads = Advertisement.objects.all()
+        advertisements = []
+
+        for ad in ads:
+            route = Route.objects.get(advertisement=ad)
+            cargo = Cargo.objects.get(advertisement=ad)
+            advertisements.append([ad,route,cargo])
+
+        return render(request, "main/ads.html",{'ads':advertisements,'auth':auth,'isDriver': isDriver,'app':app})
+
 # Create your views here.
