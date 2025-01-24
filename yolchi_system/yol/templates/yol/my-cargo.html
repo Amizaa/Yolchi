@@ -8,71 +8,89 @@
 
 
 {% block content %}
+    {% load bootstrap5 %}
     <h5 class="text-end border-bottom py-2 mb-4">بار من</h5>
 
-    <h4 class="text-center my-4">بار تبریز - ارومیه</h4>
+    {% if has %}
+    <h4 class="text-center my-4">{{title}}</h4>
 
     <div class="shadow mb-4 p-4">
-        <h5 class="text-center text-muted mb-4">اطلاعات بار</h5>
 
         <div class="container-fluid">
             <div class="row">
-                <div class="d-grid col-md-6 mb-2">
-                    <button type="submit" class="btn btn-main">اتمام بارگیری</button>
+                <div class="col-12 mb-2 text-center">
+                    <h6 class="text-info">وضعیت بار: <span class="text-muted">{{status}}</span></h6>
                 </div>
-                <div class="d-grid col-md-6 mb-2">
-                    <button type="submit" class="btn btn-success">تحویل بار</button>
-                </div>
+
+                <form class="my-4 d-flex justify-content-center" method="post"><input type='hidden'/>
+                    {% csrf_token %}
+                {% if st == 'W' %}
+                    <div class="d-grid col-md-6 mb-2">
+                        <button type="submit" class="btn btn-success" name="change">در حال بارگیری</button>
+                    </div>
+                {% elif st == 'S' %}
+                    <div class="d-grid col-md-6 mb-2">
+                        <button type="submit" class="btn btn-primary" name="change">در حال حمل</button>
+                    </div>
+                {% elif st == 'T' %}
+                    <div class="d-grid col-md-6 mb-2">
+                        <button type="submit" class="btn btn-main" name="change">تحویل بار</button>
+                    </div>
+                {% endif %}
+                </form>
+
             </div>
         </div>
 
-        <form class="my-4">
+        <form class="my-4" method="post"><input type='hidden'/>
             <p class="text-danger">در صورت بروز هرگونه مشکل یا اتفاقی که در روند حمل بار اختلالی ایجاد میکند، گزارش خود را اعلام کنید</p>
-            <div class="mb-3">
-                <label for="exampleFormControlSelect1">نوع گزارش</label>
-                <select class="form-control my-3" id="exampleFormControlSelect1">
-                  <option>تصادف</option>
-                  <option>سرقت از محموله</option>
-                  <option>خرابی خودروی باربر</option>
-                  <option>آب و هوای نامساعد</option>
-                </select>
-            </div>
-            <div class="mb-3">
-                <textarea class="form-control" id="description" rows="5" placeholder="توضیحات گزارش را وارد کنید"></textarea>
-            </div>
-            <button type="button" class="btn btn-danger">ثبت گزارش</button>
+            {% csrf_token %}
+            {% bootstrap_form form %}
+            <button type="submit" class="btn btn-danger"  name="report1" >ثبت گزارش</button>
         </form>
     </div>
 
-
-
-
         <div class="shadow mt-4 p-4">
             <h5 class="text-center text-danger mb-4">گزارشات</h5>
-    
+            {% if reports %}
             <div class="container">
-                <h6>گزارش 1</h6>
-                <hr>
-                <form class="my-4">
-                    <div class="mb-3">
-                        <label for="exampleFormControlSelect1">وضعیت گزارش</label>
-                        <select class="form-control my-3" id="exampleFormControlSelect1">
-                          <option>در حال پیگیری</option>
-                          <option>رفع گزارش و ادامه مسیر</option>
-                          <option>عدم توانایی در حمل بار</option>
-                        </select>
-                    </div>
-                    <button type="button" class="btn btn-outline-danger">اعمال تغییرات</button>
-                </form>
+                {% for report in reports %}
+                    <div class="border m-4 p-4">
+                        <div class="mb-3">
+                            <h6>نوع گزارش</h6>
+                            <p>{{report.get_type_display}}</p>
+                            <h6>توضیحات</h6>
+                            <p>{{report.description}}</p>
+                            <h6>وضعیت گزارش</h6>
+                            <p>{{report.get_status_display}}</p>
+                        </div>
+                        {% if report.status != "S" %}
+                            <form class="my-4" method="post"><input type='hidden'/>
+                                {% csrf_token %}
+                                {% bootstrap_form form2 %}
+                                <button type="submit" class="btn btn-danger" name="report2">ثبت تغییر وضعیت</button>
+                            </form>
+                        {% endif %}
+                        </div>
+                {% endfor %}
             </div>
+            {% else %}
+            <h3 class="text-center my-4 text-danger">گزارشی یافت نشد</h3>
+            {% endif %}
+            
         </div>
 
-        <div class="d-grid mt-4">
-            <h6 class="mb-2">جهت مشاهده بارنامه کلیک کنید</h6>
-            <button type="submit" class="btn btn-outline-main">مشاهده بارنامه</button>
-        </div>
+            <div class="d-grid mt-4">
+                <h6 class="mb-2">جهت مشاهده بارنامه کلیک کنید</h6>
+                <a href="{% url 'yol:waybillDetail' w_id %}" class="btn btn-outline-main">مشاهده بارنامه</a>
+            </div>
 
-
+            {% else %}
+            <br>
+            <br>
+            <h3 class="text-center my-4 text-danger">آگهی یافت نشد</h3>
+        
+        {% endif %}
 
 
 

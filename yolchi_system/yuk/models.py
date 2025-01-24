@@ -49,8 +49,8 @@ class Cargo(models.Model):
 class Route(models.Model):
     origin = models.CharField(max_length=200)
     destination = models.CharField(max_length=200)
-    dest_city =  models.CharField(max_length=200)
-    origin_city =  models.CharField(max_length=200)
+    dest_city =  models.CharField(max_length=200,blank=True,null=True)
+    origin_city =  models.CharField(max_length=200,blank=True,null=True)
     distance = models.CharField(max_length=200)
     estimated_time = models.CharField(max_length=200)
     advertisement = models.OneToOneField(Advertisement, on_delete=models.CASCADE)

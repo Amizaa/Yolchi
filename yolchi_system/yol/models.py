@@ -28,29 +28,33 @@ class Car(models.Model):
     type = models.CharField(max_length=1,choices=TYPE,blank=True)
     year = models.IntegerField(default=0)
     capacity = models.IntegerField(default=0)
+    licensePlate = models.CharField(max_length=9,blank=True,null=True)
     driver = models.OneToOneField(Driver, on_delete=models.CASCADE)
 
     def __str__(self):
         return f"{self.driver.user} : {self.model}"
     
 class Waybill(models.Model):
-    pickup_date = models.DateTimeField()
-    delivery_date = models.DateTimeField()
+    pickup_date = models.DateTimeField(auto_now_add=True)
+    delivery_date = models.DateTimeField(auto_now_add=True)
 
     STATUS = (
+        ('W','پذیرفته شده توسط راننده'),
         ('S','در حال بارگیری'),
         ('T','در حال حمل'),
         ('R','گزارش'),
         ('A','تحویل بار'),
+        ('N','ناتمام')
     )
-    status = models.CharField(max_length=1,choices=STATUS)
-    advertisemet = models.OneToOneField(Advertisement, on_delete=models.CASCADE)
+    status = models.CharField(max_length=1,choices=STATUS,default='W')
+    advertisement = models.OneToOneField(Advertisement, on_delete=models.CASCADE)
+    driver = models.ForeignKey(Driver,on_delete=models.CASCADE,blank=True,null=True)
 
     def __str__(self):
-        return f"{self.advertisemet.title}"
+        return f"{self.advertisement.title}"
 
 class Report(models.Model):
-    date = models.DateTimeField()
+    date = models.DateTimeField(auto_now_add=True)
 
     TYPE = (
         ('A','تصادف'),
@@ -66,10 +70,10 @@ class Report(models.Model):
         ('S','رفع گزارش و ادامه مسیر'),
         ('N','عدم توانایی در ادامه حمل بار'),
     )
-    status = models.CharField(max_length=1,choices=STATUS)
+    status = models.CharField(max_length=1,choices=STATUS,default="W")
     Waybill = models.ForeignKey(Waybill, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"{self.Waybill.advertisemet.title} : {self.type}"
+        return f"{self.Waybill.advertisement.title} : {self.type}"
 
 

@@ -3,11 +3,12 @@ from django.http import HttpResponse
 
 from .models import CustomUser
 from yuk.models import Shipper,Advertisement,Route,Cargo
-from yol.models import Driver, Car
+from yol.models import Driver, Car, Waybill
 from .forms import UserForm, UserRegistrationForm
 from django.contrib import messages
 from django.contrib.auth import logout, login, authenticate
 from django.contrib.auth.models import User
+from django.db.models import Q
 
 def user_information(user):
         if CustomUser.objects.get(user=user).app == 'YUK':
@@ -141,7 +142,6 @@ def ads(request):
         maxFreight = request.POST['max-freight'] if request.POST['max-freight'] else 10000000000
         minFreight = request.POST['min-freight'] if request.POST['min-freight'] else 0
 
-
         ads = Advertisement.objects.filter(title__icontains=search,
                                            freight__gte=minFreight,
                                            freight__lte=maxFreight)
@@ -161,7 +161,7 @@ def ads(request):
 
 
     else:
-        ads = Advertisement.objects.all()
+        ads = Advertisement.objects.filter(status='P')
         advertisements = []
 
         for ad in ads:
@@ -170,5 +170,19 @@ def ads(request):
             advertisements.append([ad,route,cargo])
 
         return render(request, "main/ads.html",{'ads':advertisements,'auth':auth,'isDriver': isDriver,'app':app})
+
+def registerWaybill(request,ad_id):
+    ad = Advertisement.objects.get(pk=ad_id)
+    driver = Driver.objects.get(user=request.user)
+
+    if Waybill.objects.filter(Q(driver=driver,status='W') | Q(driver=driver,status='S') | Q(driver=driver,status='T') | Q(driver=driver,status='R')):
+        messages.error(request,'شما در حال حاضر بارنامه فعال دارید')
+        return redirect('main:ads')
+    else:
+        Waybill.objects.create(advertisement=ad,driver=driver)
+        ad.status = 'A'
+        ad.save()
+        messages.success(request,'آگهی با موفقیت پذیرفته شد')
+        return redirect('main:home')
 
 # Create your views here.

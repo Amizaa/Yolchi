@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="icon" type="image/x-icon" href="{% static 'yol/images/favicon.png' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'yol/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'yol/style/css/style.css' %}">
+    <script src="{% static 'yol/bootstrap/js/bootstrap.js' %}"></script>
+    <title>جزئیات بارنامه</title>
+</head>
+
+<body>
+    <div class="container my-5">
+        <img src="{% static 'main/images/logo.png' %}" width="130" class="my-3">
+        <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th colspan="2" class="text-center">
+                    <h1>بارنامه</h1>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>صاحب بار: <span><b>{{wb.advertisement.shipper}}</b></span></td>
+                <td>راننده: <span><b>{{wb.driver}}</b></span></td>
+              </tr>
+              <tr>
+                <td>
+                    <h6>اطلاعات صاحب بار</h6>
+                    <ul style="list-style-type: none;">
+                        <li class="my-2">شماره تلفن همراه: <span><b>{{wb.advertisement.shipper.phone}}</b></span></li>
+                        <li class="my-2">آدرس پست الکترونیکی: <span><b>{{wb.advertisement.shipper.user.email}}</b></span></li>
+                    </ul>
+                </td>
+                <td>
+                    <h6>اطلاعات راننده </h6>
+                    <ul style="list-style-type: none;">
+                        <li class="my-2">شماره تلفن همراه: <span><b>{{wb.driver.phone}}</b></span></li>
+                        <li class="my-2" >آدرس پست الکترونیکی: <span><b>{{wb.driver.user.email}}</b></span></li>
+                        <li class="my-2"> شماره گواهینامه: <span><b>{{wb.driver.licenseCode}}</b></span></li>
+                    </ul>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                    <h6>اطلاعات خودروی باربر</h6>
+                    <ul style="list-style-type: none;">
+                        <li class="my-2">مدل خودرو: <span><b>{{wb.driver.car.model}}</b></span></li>
+                        <li class="my-2">نوع خودرو: <span><b>{{wb.driver.car.get_type_display}}</b></span></li>
+                        <li class="my-2">حداکثر ظرفیت: <span><b>{{wb.driver.car.capacity}}</b> کیلوگرم</span></li>
+                        <li class="my-2" >شماره پلاک: <span><b>{{wb.driver.car.licensePlate}}</b></span></li>
+                        <li class="my-2">سال تولید: <span><b>{{wb.driver.car.year}}</b></span></li>
+                    </ul>
+                </td>
+                <td>
+                    <h6>اطلاعات بار</h6>
+                    <ul style="list-style-type: none;">
+                        <li class="my-2">نوع بار: <span><b>{{wb.advertisement.cargo.type}}</b></span></li>
+                        <li class="my-2">وزن بار: <span><b>{{wb.advertisement.cargo.weight}}</b> کیلوگرم</span></li>
+                        <li class="my-2">ارزش تقریبی بار: <span><b>{{wb.advertisement.cargo.value|floatformat:"2g"}} تومان</b></span></li>
+                        <li class="my-2">کرایه حمل: <span><b>{{wb.advertisement.freight|floatformat:"2g"}}</b>تومان</span></li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h6>اطلاعات مسیر</h6>
+                    <ul style="list-style-type: none;">
+                        <li class="my-2">بارگیری از: <span><b>{{wb.advertisement.route.origin}}</b></span></li>
+                        <li class="my-2">تحویل به : <span><b>{{wb.advertisement.route.destination}}</b></span></li>
+                    </ul>
+                </td>
+                <td>
+                    <p>تاریخ بارگیری: <span><b>{{wb.pickup_date.day}}-{{wb.pickup_date.month}}-{{wb.pickup_date.year}}</b></span></p>
+                    {% if wb.pickup_date == wb.delivery_date %}
+                    <p>تاریخ تحویل بار: <span><b>-</b></span></p>
+                    {% else %}
+                    <p>تاریخ تحویل بار: <span><b>{{wb.delivery_date.day}}-{{wb.delivery_date.month}}-{{wb.delivery_date.year}}</b></span></p>
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+            </tr>
+            <tr class="border-none">
+                <td>
+                    <p>امضاء صاحب بار</p>
+                    <br>
+                    <br>
+                </td>
+                <td>امضاء راننده</td>
+            </tr>
+        </tbody>
+        </table>
+        <button class="btn btn-outline-main" onclick="window.print()">چاپ بارنامه</button>
+    </div>
+</body>
+</html>

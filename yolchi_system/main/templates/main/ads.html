@@ -151,7 +151,7 @@
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">بستن</button>
             {% if isDriver %}
-              <button type="button" class="btn btn-info" >پذیرفتن بار</button>
+              <a type="button" class="btn btn-info" href="{% url 'main:registerWaybill' ad.0.id %}">پذیرفتن بار</a>
             {% endif %}
           </div>
         </div>
