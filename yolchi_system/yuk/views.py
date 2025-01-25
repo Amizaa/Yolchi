@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth.decorators import login_required
 from .models import Shipper,Cargo,Advertisement,Route
+from yol.models import Waybill,Report
 from .forms import imageForm, AdForm, CargoForm
 from django.contrib.auth.models import User
 from django.urls import reverse_lazy
@@ -138,5 +139,17 @@ def advertisements(request):
 
 @login_required(login_url=reverse_lazy("main:signin"))
 def waybills(request):
-    return render(request, "yuk/my-waybills.html")
+    shipper = Shipper.objects.get(user=request.user)
+    ads = Advertisement.objects.filter(shipper=shipper)
+    waybills = []
+
+    for ad in ads:
+        wb = Waybill.objects.filter(advertisement=ad)
+        if wb:
+            waybills.append([wb[0],Report.objects.filter(Waybill=wb[0])])
+
+                
+
+
+    return render(request, "yuk/my-waybills.html",{'waybills':waybills})
 

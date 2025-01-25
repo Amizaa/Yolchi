@@ -1,5 +1,6 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 from .models import Driver,Car,Waybill,Report
 from .forms import imageForm, carForm, reportForm, reportStutusForm
 from django.contrib.auth.models import User
@@ -8,6 +9,7 @@ import os,re
 from django.contrib import messages
 from django.db.models import Q
 import datetime
+from django.views.generic import ListView
 
 @login_required(login_url=reverse_lazy("main:signin"))
 def profile(request):
@@ -98,7 +100,10 @@ def car(request):
 
 @login_required(login_url=reverse_lazy("main:signin"))
 def waybills(request):
-    return render(request, "yol/my-waybills.html")
+    driver = Driver.objects.get(user=request.user)
+    waybills = Waybill.objects.filter(driver=driver)
+    return render(request, "yol/my-waybills.html",{'waybills':waybills})
+
 
 @login_required(login_url=reverse_lazy("main:signin"))
 def cargo(request):

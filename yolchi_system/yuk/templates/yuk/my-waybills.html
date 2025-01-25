@@ -12,27 +12,52 @@
     <div class="container">
         <div class="row d-flex justify-content-center">
 
+            {% for wb in waybills %}
+
+            {% if wb.0.status == 'A' %}
+            <div class="card col-5 m-3 bg-success">
+            {% elif wb.0.status == 'N' %}
+            <div class="card col-5 m-3 bg-danger">
+            {% else %}
             <div class="card col-5 m-3">
+            {% endif %}
                 <div class="card-body p-4">
-                  <h4 class="card-title text-center">title</h4>
-                  <hr>
-                  <h6 class="card-subtitle mb-3 text-muted"><span class="text-info">راننده: </span>علی صمدی</h6>
-                  <p class="mb-3"><span class="text-info">مبدا: </span>ارومیه</p>
-                  <p class="mb-3"><span class="text-info">مقصد: </span>تبریز</p>
-                  <p class="mb-3"><span class="text-info">وضعیت: </span>در حال بارگیری</p>
-                  <p class="mb-3"><span class="text-info">تاریخ بارگیری: </span>1400.01.01</p>
-                  <p class="mb-3"><span class="text-info">تاریخ تحویل بار: </span>1400.01.02</p>
-                  <a href="#" class="btn btn-outline-info m-3 d-flex justify-content-center">چاپ بارنامه</a>
-                  <a href="#" class="btn btn-danger m-3  d-flex justify-content-center" id="toggle-report">مشاهده گزارش</a>
+                <h4 class="card-title text-center">{{wb.0.advertisement.title}}</h4>
+                <hr>
+                <h6 class="card-subtitle mb-3 text-muted"><span class="text-info">راننده: </span>{{wb.0.driver}}</h6>
+                <p class="mb-3"><span class="text-info">مبدا: </span>{{wb.0.advertisement.route.origin_city}}</p>
+                <p class="mb-3"><span class="text-info">مقصد: </span>{{wb.0.advertisement.route.dest_city}}</p>
+                <p class="mb-3"><span class="text-info">وضعیت: </span>{{wb.0.get_status_display}}</p>
+                <p class="mb-3"><span class="text-info">تاریخ: </span>{{wb.0.pickup_date}}</p>
+                <a href="{% url 'yol:waybillDetail' wb.0.id %}" class="btn btn-outline-info m-3 d-flex justify-content-center">مشاهده بارنامه</a>
+                <a href="#" class="btn btn-danger m-3  d-flex justify-content-center" id="toggle-report{{wb.0.id}}">مشاهده گزارش</a>
+                </div>
 
-                  <div class="collapse" id="report">
-                    <div class="card card-body">
-                        <p>گزارشی یافت نشد</p>
-                    </div>
-                  </div>
+                <script>
+                    document.getElementById('toggle-report{{wb.0.id}}').addEventListener('click', function() {
+                        var report = document.getElementById('report{{wb.0.id}}');
+                        report.classList.toggle('collapse');
+                    });
+                    
+                </script>
 
+                <div class="collapse" id="report{{wb.0.id}}">
+                    {% if wb.1 %}
+                    {% for report in wb.1 %}
+                        <div class="card card-body my-3">
+                            <p class="mb-3"><span class="text-info">نوع گزارش: </span>{{report.get_type_display}}</p>
+                            <p class="mb-3"><span class="text-info">توضیحات: </span>{{report.description}}</p>
+                            <p class="mb-3"><span class="text-info">وضعیت فعلی گزارش: </span>{{report.get_status_display}}</p>
+                        </div>
+                    {% endfor %}
+                    {% else %}
+                        <div class="card card-body">
+                            <p>گزارشی یافت نشد</p>
+                        </div>
+                    {% endif %}
                 </div>
             </div>
+            {% endfor %}    
         
         </div>
         

@@ -4,7 +4,3 @@ document.getElementById('sidebar-toggle').addEventListener('click', function() {
 });
 
 
-document.getElementById('toggle-report').addEventListener('click', function() {
-    var report = document.getElementById('report');
-    report.classList.toggle('collapse');
-});
