@@ -107,3 +107,37 @@ h1, h2, h3, h4, h5, h6{
     backdrop-filter: blur(8.9px);
     -webkit-backdrop-filter: blur(8.9px);
   }
+
+  .bg-main{
+    background-color: var(--main) !important;
+  }
+
+  .btn-outline-main {
+    color: var(--main) !important;
+    background-color: transparent !important;
+    background-image: none !important;
+    border-color: var(--main) !important;
+  }
+  
+  .btn-outline-main:hover {
+    color: #fff !important;
+    background-color: var(--main) !important;
+    border-color: var(--main) !important;
+  }
+
+
+  .text-main{
+    color: var(--main) !important;
+  }
+  
+  .btn-main {
+    color: #fff !important;
+    background-color: var(--main) !important;
+    border-color: var(--main) !important;
+  }
+  
+  .btn-main:hover {
+    color: #fff !important;
+    background-color: #3d4b68 !important;
+    border-color: #3d4b68 !important;
+  }

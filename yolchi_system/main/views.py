@@ -24,10 +24,13 @@ def user_information(user):
         return context
 
 def home(request):
+    ads = Advertisement.objects.all()[:5]
     if request.user.is_authenticated:
-        return render(request, 'main/home.html', user_information(request.user))
+        context = user_information(request.user)
+        context["ads"] = ads
+        return render(request, 'main/home.html', context)
     else:
-        return render(request, "main/home.html",{'auth':False})
+        return render(request, "main/home.html",{'auth':False,'ads':ads})
 
 def about(request):
     if request.user.is_authenticated:
