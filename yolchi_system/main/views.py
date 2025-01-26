@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-
+from django.core.paginator import Paginator,EmptyPage, PageNotAnInteger
 from .models import CustomUser
 from yuk.models import Shipper,Advertisement,Route,Cargo
 from yol.models import Driver, Car, Waybill
@@ -159,20 +159,76 @@ def ads(request):
                                          weight__lte=maxWeight,)
             if route and cargo:
                 advertisements.append([ad,route[0],cargo[0]])
-        
-        return render(request, "main/ads.html",{'ads':advertisements,'auth':auth,'isDriver': isDriver,'app':app})
+
+        page = request.GET.get('page', 1)
+
+        paginator = Paginator(advertisements, 2)
+        try:
+            ads = paginator.page(page)
+        except PageNotAnInteger:
+            ads = paginator.page(1)
+        except EmptyPage:
+            ads = paginator.page(paginator.num_pages)
+
+        filter_params = {
+        'search': search,
+        'origin': origin,
+        'destination': destination,
+        'minWeight': minWeight,
+        'maxWeight': maxWeight,
+        'minFreight': minFreight,
+        'maxFreight': maxFreight,
+        }
+
+        return render(request, "main/ads.html",{'ads':ads,'auth':auth,'isDriver': isDriver,'app':app,'filter_params':filter_params})
 
 
     else:
-        ads = Advertisement.objects.filter(status='P')
+        search = request.POST.get('search', request.GET.get('search', ''))
+        origin = request.POST.get('origin', request.GET.get('origin', ''))
+        destination = request.POST.get('destination', request.GET.get('destination', ''))
+        minWeight = request.POST.get('minWeight', request.GET.get('minWeight', 0))
+        maxWeight = request.POST.get('maxWeight', request.GET.get('maxWeight', 1000000))
+        maxFreight = request.POST.get('maxFreight', request.GET.get('maxFreight', 10000000000))
+        minFreight = request.POST.get('minFreight', request.GET.get('minFreight', 0))
+
+        filter_params = {
+        'search': search,
+        'origin': origin,
+        'destination': destination,
+        'minWeight': minWeight,
+        'maxWeight': maxWeight,
+        'minFreight': minFreight,
+        'maxFreight': maxFreight,
+        }
+
+        ads = Advertisement.objects.filter(title__icontains=search,
+                                           freight__gte=minFreight,
+                                           freight__lte=maxFreight)
         advertisements = []
-
         for ad in ads:
-            route = Route.objects.get(advertisement=ad)
-            cargo = Cargo.objects.get(advertisement=ad)
-            advertisements.append([ad,route,cargo])
+            route = Route.objects.filter(advertisement=ad,
+                                         origin_city__icontains=origin,
+                                         dest_city__icontains=destination)
+            
+            cargo = Cargo.objects.filter(advertisement=ad,
+                                         weight__gte=minWeight,
+                                         weight__lte=maxWeight,)
+            if route and cargo:
+                advertisements.append([ad,route[0],cargo[0]])
 
-        return render(request, "main/ads.html",{'ads':advertisements,'auth':auth,'isDriver': isDriver,'app':app})
+
+        page = request.GET.get('page', 1)
+
+        paginator = Paginator(advertisements, 2)
+        try:
+            ads = paginator.page(page)
+        except PageNotAnInteger:
+            ads = paginator.page(1)
+        except EmptyPage:
+            ads = paginator.page(paginator.num_pages)
+
+        return render(request, "main/ads.html",{'ads':ads,'auth':auth,'isDriver': isDriver,'app':app,'filter_params':filter_params})
 
 def registerWaybill(request,ad_id):
     ad = Advertisement.objects.get(pk=ad_id)

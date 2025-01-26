@@ -12,6 +12,8 @@
     <div class="container">
         <div class="row d-flex justify-content-center">
 
+            {% if waybills %}
+
             {% for wb in waybills %}
 
             {% if wb.0.status == 'A' %}
@@ -59,6 +61,11 @@
             </div>
             {% endfor %}    
         
+            {% else %}
+            <h4 class="text-center text-danger">بارنامه ای یافت نشد</h4>
+            
+            {% endif %}
+
         </div>
         
     </div>
