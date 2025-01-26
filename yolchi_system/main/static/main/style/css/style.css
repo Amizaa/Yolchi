@@ -19,7 +19,7 @@
 }
 
 body{
-font-family: anjoman-light,sans-serif; 
+font-family: anjoman-light,sans-serif !important; 
 direction: rtl;
 }
 

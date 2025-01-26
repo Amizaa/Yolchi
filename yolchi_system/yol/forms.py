@@ -4,6 +4,7 @@ from .models import Car,Report
 class imageForm(forms.Form):
     image = forms.ImageField(label="تغییر عکس پروفایل",required=False)
 
+
 class carForm(forms.ModelForm):
     class Meta:
         model = Car

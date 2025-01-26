@@ -9,6 +9,8 @@ from django.contrib import messages
 from django.contrib.auth import logout, login, authenticate
 from django.contrib.auth.models import User
 from django.db.models import Q
+from django.core.mail import send_mail
+from django.conf import  settings
 
 def user_information(user):
         if CustomUser.objects.get(user=user).app == 'YUK':
@@ -242,6 +244,10 @@ def registerWaybill(request,ad_id):
         ad.status = 'A'
         ad.save()
         messages.success(request,'آگهی با موفقیت پذیرفته شد')
+        subject = 'پذیرش آگهی توسط راننده'
+        message = f'آگهی {ad.title} توسط {driver} پذیرفته شد'
+        email_from = settings.EMAIL_HOST_USER
+        recipient_list = [ad.shipper.user.email,]
+        send_mail(subject, message, email_from, recipient_list)
         return redirect('main:home')
-
 # Create your views here.

@@ -1,6 +1,5 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,get_object_or_404
 from django.contrib.auth.decorators import login_required
-from django.utils.decorators import method_decorator
 from .models import Driver,Car,Waybill,Report
 from .forms import imageForm, carForm, reportForm, reportStutusForm
 from django.contrib.auth.models import User
@@ -9,10 +8,21 @@ import os,re
 from django.contrib import messages
 from django.db.models import Q
 import datetime
-from django.views.generic import ListView
+from django.utils import timezone
 
 @login_required(login_url=reverse_lazy("main:signin"))
 def profile(request):
+
+    request.session['last_visit'] = timezone.now().isoformat()
+    
+    last_visit_time = request.session.get('last_visit')
+    
+    if last_visit_time:
+        last_visit_time = timezone.datetime.fromisoformat(last_visit_time)
+    else:
+        last_visit_time = "---"
+    
+
     user = request.user
     driver = Driver.objects.get(user=user)
     
@@ -63,7 +73,8 @@ def profile(request):
         'firstname': user.first_name,
         'lastname': user.last_name,
         'phone': driver.phone,
-        'license':driver.licenseCode
+        'license':driver.licenseCode,
+        'last_visit': last_visit_time,
     }
     return render(request, "yol/profile.html",context) 
 
@@ -174,6 +185,6 @@ def cargo(request):
     return render(request, "yol/my-cargo.html",context)
 
 def waybillDetail(request,w_id):
-    waybill = Waybill.objects.get(pk=w_id)
+    waybill = get_object_or_404(Waybill,pk=w_id)
     return render(request, "yol/way-detail.html",{'wb':waybill})
 # Create your views here.

@@ -7,12 +7,22 @@ from django.contrib.auth.models import User
 from django.urls import reverse_lazy
 import os,re
 from django.contrib import messages
-
+from django.utils import timezone
 
 
 
 @login_required(login_url=reverse_lazy("main:signin"))
 def profile(request):
+
+    request.session['last_visit'] = timezone.now().isoformat()
+    
+    last_visit_time = request.session.get('last_visit')
+    
+    if last_visit_time:
+        last_visit_time = timezone.datetime.fromisoformat(last_visit_time)
+    else:
+        last_visit_time = "---"
+
     user = request.user
     shipper = Shipper.objects.get(user=user)
     
@@ -58,7 +68,8 @@ def profile(request):
         'email': user.email,
         'firstname': user.first_name,
         'lastname': user.last_name,
-        'phone': shipper.phone
+        'phone': shipper.phone,
+        'last_visit': last_visit_time,
     }
     return render(request, "yuk/profile.html",context) 
 
