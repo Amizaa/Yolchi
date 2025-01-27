@@ -1,0 +1,2798 @@
+openapi: 3.0.3
+info:
+  title: Blog API Project
+  version: 1.0.0
+  description: A sample blog to learn about DRF
+paths:
+  /api/advertisement-detail/{id}:
+    get:
+      operationId: api_advertisement_detail_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdvertisementSerialaizer'
+          description: ''
+    put:
+      operationId: api_advertisement_detail_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AdvertisementSerialaizer'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/AdvertisementSerialaizer'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/AdvertisementSerialaizer'
+        required: true
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdvertisementSerialaizer'
+          description: ''
+    patch:
+      operationId: api_advertisement_detail_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedAdvertisementSerialaizer'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedAdvertisementSerialaizer'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedAdvertisementSerialaizer'
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdvertisementSerialaizer'
+          description: ''
+  /api/advertisement-list/:
+    get:
+      operationId: api_advertisement_list_list
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AdvertisementSerialaizer'
+          description: ''
+  /api/car-detail/{id}:
+    get:
+      operationId: api_car_detail_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CarSerialaizer'
+          description: ''
+    put:
+      operationId: api_car_detail_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CarSerialaizer'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CarSerialaizer'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CarSerialaizer'
+        required: true
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CarSerialaizer'
+          description: ''
+    patch:
+      operationId: api_car_detail_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedCarSerialaizer'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedCarSerialaizer'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedCarSerialaizer'
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CarSerialaizer'
+          description: ''
+    delete:
+      operationId: api_car_detail_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/car-list/:
+    get:
+      operationId: api_car_list_list
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CarSerialaizer'
+          description: ''
+  /api/cargo-detail/{id}:
+    get:
+      operationId: api_cargo_detail_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CargoSerialaizer'
+          description: ''
+    put:
+      operationId: api_cargo_detail_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CargoSerialaizer'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CargoSerialaizer'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CargoSerialaizer'
+        required: true
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CargoSerialaizer'
+          description: ''
+    patch:
+      operationId: api_cargo_detail_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedCargoSerialaizer'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedCargoSerialaizer'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedCargoSerialaizer'
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CargoSerialaizer'
+          description: ''
+    delete:
+      operationId: api_cargo_detail_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/cargo-list/:
+    get:
+      operationId: api_cargo_list_list
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CargoSerialaizer'
+          description: ''
+  /api/custom-user-detail/{id}:
+    get:
+      operationId: api_custom_user_detail_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomUserSerialaizer'
+          description: ''
+    put:
+      operationId: api_custom_user_detail_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomUserSerialaizer'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CustomUserSerialaizer'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CustomUserSerialaizer'
+        required: true
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomUserSerialaizer'
+          description: ''
+    patch:
+      operationId: api_custom_user_detail_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedCustomUserSerialaizer'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedCustomUserSerialaizer'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedCustomUserSerialaizer'
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomUserSerialaizer'
+          description: ''
+    delete:
+      operationId: api_custom_user_detail_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/custom-user-list/:
+    get:
+      operationId: api_custom_user_list_list
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CustomUserSerialaizer'
+          description: ''
+  /api/driver-detail/{id}:
+    get:
+      operationId: api_driver_detail_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DriverSerialaizer'
+          description: ''
+    put:
+      operationId: api_driver_detail_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DriverSerialaizer'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/DriverSerialaizer'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/DriverSerialaizer'
+        required: true
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DriverSerialaizer'
+          description: ''
+    patch:
+      operationId: api_driver_detail_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedDriverSerialaizer'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedDriverSerialaizer'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedDriverSerialaizer'
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DriverSerialaizer'
+          description: ''
+  /api/driver-list/:
+    get:
+      operationId: api_driver_list_list
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DriverSerialaizer'
+          description: ''
+  /api/drivers/:
+    get:
+      operationId: api_drivers_list
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DriverSerialaizer'
+          description: ''
+    post:
+      operationId: api_drivers_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DriverSerialaizer'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/DriverSerialaizer'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/DriverSerialaizer'
+        required: true
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DriverSerialaizer'
+          description: ''
+  /api/drivers/{id}/:
+    get:
+      operationId: api_drivers_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this driver.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DriverSerialaizer'
+          description: ''
+    put:
+      operationId: api_drivers_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this driver.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DriverSerialaizer'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/DriverSerialaizer'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/DriverSerialaizer'
+        required: true
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DriverSerialaizer'
+          description: ''
+    patch:
+      operationId: api_drivers_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this driver.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedDriverSerialaizer'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedDriverSerialaizer'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedDriverSerialaizer'
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DriverSerialaizer'
+          description: ''
+    delete:
+      operationId: api_drivers_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this driver.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/report-detail/{id}:
+    get:
+      operationId: api_report_detail_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReportSerialaizer'
+          description: ''
+    put:
+      operationId: api_report_detail_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReportSerialaizer'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ReportSerialaizer'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ReportSerialaizer'
+        required: true
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReportSerialaizer'
+          description: ''
+    patch:
+      operationId: api_report_detail_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedReportSerialaizer'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedReportSerialaizer'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedReportSerialaizer'
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReportSerialaizer'
+          description: ''
+    delete:
+      operationId: api_report_detail_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/report-list/:
+    get:
+      operationId: api_report_list_list
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ReportSerialaizer'
+          description: ''
+  /api/route-detail/{id}:
+    get:
+      operationId: api_route_detail_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RouteSerialaizer'
+          description: ''
+    put:
+      operationId: api_route_detail_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RouteSerialaizer'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/RouteSerialaizer'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/RouteSerialaizer'
+        required: true
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RouteSerialaizer'
+          description: ''
+    patch:
+      operationId: api_route_detail_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedRouteSerialaizer'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedRouteSerialaizer'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedRouteSerialaizer'
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RouteSerialaizer'
+          description: ''
+    delete:
+      operationId: api_route_detail_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/route-list/:
+    get:
+      operationId: api_route_list_list
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RouteSerialaizer'
+          description: ''
+  /api/schema/:
+    get:
+      operationId: api_schema_retrieve
+      description: |-
+        OpenApi3 schema for this API. Format can be selected via content negotiation.
+
+        - YAML: application/vnd.oai.openapi
+        - JSON: application/vnd.oai.openapi+json
+      parameters:
+      - in: query
+        name: format
+        schema:
+          type: string
+          enum:
+          - json
+          - yaml
+      - in: query
+        name: lang
+        schema:
+          type: string
+          enum:
+          - af
+          - ar
+          - ar-dz
+          - ast
+          - az
+          - be
+          - bg
+          - bn
+          - br
+          - bs
+          - ca
+          - ckb
+          - cs
+          - cy
+          - da
+          - de
+          - dsb
+          - el
+          - en
+          - en-au
+          - en-gb
+          - eo
+          - es
+          - es-ar
+          - es-co
+          - es-mx
+          - es-ni
+          - es-ve
+          - et
+          - eu
+          - fa
+          - fi
+          - fr
+          - fy
+          - ga
+          - gd
+          - gl
+          - he
+          - hi
+          - hr
+          - hsb
+          - hu
+          - hy
+          - ia
+          - id
+          - ig
+          - io
+          - is
+          - it
+          - ja
+          - ka
+          - kab
+          - kk
+          - km
+          - kn
+          - ko
+          - ky
+          - lb
+          - lt
+          - lv
+          - mk
+          - ml
+          - mn
+          - mr
+          - ms
+          - my
+          - nb
+          - ne
+          - nl
+          - nn
+          - os
+          - pa
+          - pl
+          - pt
+          - pt-br
+          - ro
+          - ru
+          - sk
+          - sl
+          - sq
+          - sr
+          - sr-latn
+          - sv
+          - sw
+          - ta
+          - te
+          - tg
+          - th
+          - tk
+          - tr
+          - tt
+          - udm
+          - uk
+          - ur
+          - uz
+          - vi
+          - zh-hans
+          - zh-hant
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/vnd.oai.openapi:
+              schema:
+                type: object
+                additionalProperties: {}
+            application/yaml:
+              schema:
+                type: object
+                additionalProperties: {}
+            application/vnd.oai.openapi+json:
+              schema:
+                type: object
+                additionalProperties: {}
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+          description: ''
+  /api/shipper-detail/{id}:
+    get:
+      operationId: api_shipper_detail_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShipperSerialaizer'
+          description: ''
+    put:
+      operationId: api_shipper_detail_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ShipperSerialaizer'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ShipperSerialaizer'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ShipperSerialaizer'
+        required: true
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShipperSerialaizer'
+          description: ''
+    patch:
+      operationId: api_shipper_detail_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedShipperSerialaizer'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedShipperSerialaizer'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedShipperSerialaizer'
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShipperSerialaizer'
+          description: ''
+  /api/shipper-list/:
+    get:
+      operationId: api_shipper_list_list
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ShipperSerialaizer'
+          description: ''
+  /api/shippers/:
+    get:
+      operationId: api_shippers_list
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ShipperSerialaizer'
+          description: ''
+    post:
+      operationId: api_shippers_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ShipperSerialaizer'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ShipperSerialaizer'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ShipperSerialaizer'
+        required: true
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShipperSerialaizer'
+          description: ''
+  /api/shippers/{id}/:
+    get:
+      operationId: api_shippers_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this shipper.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShipperSerialaizer'
+          description: ''
+    put:
+      operationId: api_shippers_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this shipper.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ShipperSerialaizer'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ShipperSerialaizer'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ShipperSerialaizer'
+        required: true
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShipperSerialaizer'
+          description: ''
+    patch:
+      operationId: api_shippers_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this shipper.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedShipperSerialaizer'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedShipperSerialaizer'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedShipperSerialaizer'
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShipperSerialaizer'
+          description: ''
+    delete:
+      operationId: api_shippers_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this shipper.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/user-detail/{id}:
+    get:
+      operationId: api_user_detail_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserSerialaizer'
+          description: ''
+    put:
+      operationId: api_user_detail_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserSerialaizer'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/UserSerialaizer'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/UserSerialaizer'
+        required: true
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserSerialaizer'
+          description: ''
+    patch:
+      operationId: api_user_detail_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedUserSerialaizer'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedUserSerialaizer'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedUserSerialaizer'
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserSerialaizer'
+          description: ''
+  /api/user-list/:
+    get:
+      operationId: api_user_list_list
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UserSerialaizer'
+          description: ''
+  /api/users/:
+    get:
+      operationId: api_users_list
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UserSerialaizer'
+          description: ''
+    post:
+      operationId: api_users_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserSerialaizer'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/UserSerialaizer'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/UserSerialaizer'
+        required: true
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserSerialaizer'
+          description: ''
+  /api/users/{id}/:
+    get:
+      operationId: api_users_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this user.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserSerialaizer'
+          description: ''
+    put:
+      operationId: api_users_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this user.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserSerialaizer'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/UserSerialaizer'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/UserSerialaizer'
+        required: true
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserSerialaizer'
+          description: ''
+    patch:
+      operationId: api_users_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this user.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedUserSerialaizer'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedUserSerialaizer'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedUserSerialaizer'
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserSerialaizer'
+          description: ''
+    delete:
+      operationId: api_users_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this user.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/v1/dj-rest-auth/login/:
+    post:
+      operationId: api_v1_dj_rest_auth_login_create
+      description: |-
+        Check the credentials and return the REST Token
+        if the credentials are valid and authenticated.
+        Calls Django Auth login method to register User ID
+        in Django session framework
+
+        Accept the following POST parameters: username, password
+        Return the REST Framework Token Object's key.
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Login'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Login'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Login'
+        required: true
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Token'
+          description: ''
+  /api/v1/dj-rest-auth/logout/:
+    post:
+      operationId: api_v1_dj_rest_auth_logout_create
+      description: |-
+        Calls Django logout method and delete the Token object
+        assigned to the current User object.
+
+        Accepts/Returns nothing.
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestAuthDetail'
+          description: ''
+  /api/v1/dj-rest-auth/password/change/:
+    post:
+      operationId: api_v1_dj_rest_auth_password_change_create
+      description: |-
+        Calls Django Auth SetPasswordForm save method.
+
+        Accepts the following POST parameters: new_password1, new_password2
+        Returns the success/fail message.
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PasswordChange'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PasswordChange'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PasswordChange'
+        required: true
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestAuthDetail'
+          description: ''
+  /api/v1/dj-rest-auth/password/reset/:
+    post:
+      operationId: api_v1_dj_rest_auth_password_reset_create
+      description: |-
+        Calls Django Auth PasswordResetForm save method.
+
+        Accepts the following POST parameters: email
+        Returns the success/fail message.
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PasswordReset'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PasswordReset'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PasswordReset'
+        required: true
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestAuthDetail'
+          description: ''
+  /api/v1/dj-rest-auth/password/reset/confirm/:
+    post:
+      operationId: api_v1_dj_rest_auth_password_reset_confirm_create
+      description: |-
+        Password reset e-mail link is confirmed, therefore
+        this resets the user's password.
+
+        Accepts the following POST parameters: token, uid,
+            new_password1, new_password2
+        Returns the success/fail message.
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PasswordResetConfirm'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PasswordResetConfirm'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PasswordResetConfirm'
+        required: true
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestAuthDetail'
+          description: ''
+  /api/v1/dj-rest-auth/registration:
+    post:
+      operationId: api_v1_dj_rest_auth_registration_create
+      description: |-
+        Registers a new user.
+
+        Accepts the following POST parameters: username, email, password1, password2.
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Register'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Register'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Register'
+        required: true
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Token'
+          description: ''
+  /api/v1/dj-rest-auth/registrationresend-email/:
+    post:
+      operationId: api_v1_dj_rest_auth_registrationresend_email_create
+      description: |-
+        Resends another email to an unverified email.
+
+        Accepts the following POST parameter: email.
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResendEmailVerification'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ResendEmailVerification'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ResendEmailVerification'
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestAuthDetail'
+          description: ''
+  /api/v1/dj-rest-auth/registrationverify-email/:
+    post:
+      operationId: api_v1_dj_rest_auth_registrationverify_email_create
+      description: |-
+        Verifies the email associated with the provided key.
+
+        Accepts the following POST parameter: key.
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VerifyEmail'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/VerifyEmail'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/VerifyEmail'
+        required: true
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestAuthDetail'
+          description: ''
+  /api/v1/dj-rest-auth/user/:
+    get:
+      operationId: api_v1_dj_rest_auth_user_retrieve
+      description: |-
+        Reads and updates UserModel fields
+        Accepts GET, PUT, PATCH methods.
+
+        Default accepted fields: username, first_name, last_name
+        Default display fields: pk, username, email, first_name, last_name
+        Read-only fields: pk, email
+
+        Returns UserModel fields.
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserDetails'
+          description: ''
+    put:
+      operationId: api_v1_dj_rest_auth_user_update
+      description: |-
+        Reads and updates UserModel fields
+        Accepts GET, PUT, PATCH methods.
+
+        Default accepted fields: username, first_name, last_name
+        Default display fields: pk, username, email, first_name, last_name
+        Read-only fields: pk, email
+
+        Returns UserModel fields.
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserDetails'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/UserDetails'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/UserDetails'
+        required: true
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserDetails'
+          description: ''
+    patch:
+      operationId: api_v1_dj_rest_auth_user_partial_update
+      description: |-
+        Reads and updates UserModel fields
+        Accepts GET, PUT, PATCH methods.
+
+        Default accepted fields: username, first_name, last_name
+        Default display fields: pk, username, email, first_name, last_name
+        Read-only fields: pk, email
+
+        Returns UserModel fields.
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedUserDetails'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedUserDetails'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedUserDetails'
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserDetails'
+          description: ''
+  /api/waybill-detail/{id}:
+    get:
+      operationId: api_waybill_detail_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WaybillSerialaizer'
+          description: ''
+    put:
+      operationId: api_waybill_detail_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WaybillSerialaizer'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/WaybillSerialaizer'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/WaybillSerialaizer'
+        required: true
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WaybillSerialaizer'
+          description: ''
+    patch:
+      operationId: api_waybill_detail_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedWaybillSerialaizer'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedWaybillSerialaizer'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedWaybillSerialaizer'
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WaybillSerialaizer'
+          description: ''
+    delete:
+      operationId: api_waybill_detail_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/waybill-list/:
+    get:
+      operationId: api_waybill_list_list
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/WaybillSerialaizer'
+          description: ''
+components:
+  schemas:
+    AdvertisementSerialaizer:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        title:
+          type: string
+          maxLength: 200
+        description:
+          type: string
+        freight:
+          type: integer
+          nullable: true
+        status:
+          $ref: '#/components/schemas/AdvertisementSerialaizerStatusEnum'
+        date:
+          type: string
+          format: date-time
+          readOnly: true
+        shipper:
+          type: integer
+      required:
+      - date
+      - description
+      - id
+      - shipper
+      - title
+    AdvertisementSerialaizerStatusEnum:
+      enum:
+      - P
+      - A
+      type: string
+      description: |-
+        * `P` - در حال انتظار
+        * `A` - پذیرفته شده
+    AppEnum:
+      enum:
+      - YOL
+      - YUK
+      type: string
+      description: |-
+        * `YOL` - راننده
+        * `YUK` - صاحب بار
+    BlankEnum:
+      enum:
+      - ''
+    CarSerialaizer:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        model:
+          type: string
+          maxLength: 200
+        type:
+          oneOf:
+          - $ref: '#/components/schemas/CarSerialaizerTypeEnum'
+          - $ref: '#/components/schemas/BlankEnum'
+        year:
+          type: integer
+        capacity:
+          type: integer
+        licensePlate:
+          type: string
+          nullable: true
+          maxLength: 9
+        driver:
+          type: integer
+      required:
+      - driver
+      - id
+    CarSerialaizerTypeEnum:
+      enum:
+      - V
+      - N
+      - K
+      - T
+      type: string
+      description: |-
+        * `V` - وانت بار
+        * `N` - وانت نیسان
+        * `K` - کامیونت
+        * `T` - تریلی
+    CargoSerialaizer:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        weight:
+          type: number
+          format: double
+        type:
+          type: string
+          maxLength: 200
+        value:
+          type: number
+          format: double
+        dimension:
+          type: string
+          maxLength: 200
+        special_instructions:
+          type: string
+        advertisement:
+          type: integer
+      required:
+      - advertisement
+      - dimension
+      - id
+      - type
+      - value
+      - weight
+    CustomUserSerialaizer:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        app:
+          $ref: '#/components/schemas/AppEnum'
+        user:
+          type: integer
+      required:
+      - app
+      - id
+      - user
+    DriverSerialaizer:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        profilePicture:
+          type: string
+          format: uri
+        phone:
+          type: string
+          maxLength: 11
+        licenseCode:
+          type: string
+          maxLength: 10
+        user:
+          type: integer
+      required:
+      - id
+      - licenseCode
+      - phone
+      - user
+    Login:
+      type: object
+      properties:
+        username:
+          type: string
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+      required:
+      - password
+    PasswordChange:
+      type: object
+      properties:
+        new_password1:
+          type: string
+          maxLength: 128
+        new_password2:
+          type: string
+          maxLength: 128
+      required:
+      - new_password1
+      - new_password2
+    PasswordReset:
+      type: object
+      description: Serializer for requesting a password reset e-mail.
+      properties:
+        email:
+          type: string
+          format: email
+      required:
+      - email
+    PasswordResetConfirm:
+      type: object
+      description: Serializer for confirming a password reset attempt.
+      properties:
+        new_password1:
+          type: string
+          maxLength: 128
+        new_password2:
+          type: string
+          maxLength: 128
+        uid:
+          type: string
+        token:
+          type: string
+      required:
+      - new_password1
+      - new_password2
+      - token
+      - uid
+    PatchedAdvertisementSerialaizer:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        title:
+          type: string
+          maxLength: 200
+        description:
+          type: string
+        freight:
+          type: integer
+          nullable: true
+        status:
+          $ref: '#/components/schemas/AdvertisementSerialaizerStatusEnum'
+        date:
+          type: string
+          format: date-time
+          readOnly: true
+        shipper:
+          type: integer
+    PatchedCarSerialaizer:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        model:
+          type: string
+          maxLength: 200
+        type:
+          oneOf:
+          - $ref: '#/components/schemas/CarSerialaizerTypeEnum'
+          - $ref: '#/components/schemas/BlankEnum'
+        year:
+          type: integer
+        capacity:
+          type: integer
+        licensePlate:
+          type: string
+          nullable: true
+          maxLength: 9
+        driver:
+          type: integer
+    PatchedCargoSerialaizer:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        weight:
+          type: number
+          format: double
+        type:
+          type: string
+          maxLength: 200
+        value:
+          type: number
+          format: double
+        dimension:
+          type: string
+          maxLength: 200
+        special_instructions:
+          type: string
+        advertisement:
+          type: integer
+    PatchedCustomUserSerialaizer:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        app:
+          $ref: '#/components/schemas/AppEnum'
+        user:
+          type: integer
+    PatchedDriverSerialaizer:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        profilePicture:
+          type: string
+          format: uri
+        phone:
+          type: string
+          maxLength: 11
+        licenseCode:
+          type: string
+          maxLength: 10
+        user:
+          type: integer
+    PatchedReportSerialaizer:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        date:
+          type: string
+          format: date-time
+          readOnly: true
+        type:
+          $ref: '#/components/schemas/ReportSerialaizerTypeEnum'
+        description:
+          type: string
+        status:
+          $ref: '#/components/schemas/ReportSerialaizerStatusEnum'
+        Waybill:
+          type: integer
+    PatchedRouteSerialaizer:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        origin:
+          type: string
+          maxLength: 200
+        destination:
+          type: string
+          maxLength: 200
+        dest_city:
+          type: string
+          nullable: true
+          maxLength: 200
+        origin_city:
+          type: string
+          nullable: true
+          maxLength: 200
+        distance:
+          type: string
+          maxLength: 200
+        estimated_time:
+          type: string
+          maxLength: 200
+        advertisement:
+          type: integer
+    PatchedShipperSerialaizer:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        profilePicture:
+          type: string
+          format: uri
+        phone:
+          type: string
+          maxLength: 11
+        user:
+          type: integer
+    PatchedUserDetails:
+      type: object
+      description: User model w/o password
+      properties:
+        pk:
+          type: integer
+          readOnly: true
+          title: ID
+        username:
+          type: string
+          description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.
+          pattern: ^[\w.@+-]+$
+          maxLength: 150
+        email:
+          type: string
+          format: email
+          readOnly: true
+          title: Email address
+        first_name:
+          type: string
+          maxLength: 150
+        last_name:
+          type: string
+          maxLength: 150
+    PatchedUserSerialaizer:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        password:
+          type: string
+          maxLength: 128
+        last_login:
+          type: string
+          format: date-time
+          nullable: true
+        is_superuser:
+          type: boolean
+          title: Superuser status
+          description: Designates that this user has all permissions without explicitly
+            assigning them.
+        username:
+          type: string
+          description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.
+          pattern: ^[\w.@+-]+$
+          maxLength: 150
+        first_name:
+          type: string
+          maxLength: 150
+        last_name:
+          type: string
+          maxLength: 150
+        email:
+          type: string
+          format: email
+          title: Email address
+          maxLength: 254
+        is_staff:
+          type: boolean
+          title: Staff status
+          description: Designates whether the user can log into this admin site.
+        is_active:
+          type: boolean
+          title: Active
+          description: Designates whether this user should be treated as active. Unselect
+            this instead of deleting accounts.
+        date_joined:
+          type: string
+          format: date-time
+        groups:
+          type: array
+          items:
+            type: integer
+          description: The groups this user belongs to. A user will get all permissions
+            granted to each of their groups.
+        user_permissions:
+          type: array
+          items:
+            type: integer
+          description: Specific permissions for this user.
+    PatchedWaybillSerialaizer:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        pickup_date:
+          type: string
+          format: date-time
+          readOnly: true
+        delivery_date:
+          type: string
+          format: date-time
+          readOnly: true
+        status:
+          $ref: '#/components/schemas/WaybillSerialaizerStatusEnum'
+        advertisement:
+          type: integer
+        driver:
+          type: integer
+          nullable: true
+    Register:
+      type: object
+      properties:
+        username:
+          type: string
+          maxLength: 150
+          minLength: 1
+        email:
+          type: string
+          format: email
+        password1:
+          type: string
+          writeOnly: true
+        password2:
+          type: string
+          writeOnly: true
+      required:
+      - password1
+      - password2
+      - username
+    ReportSerialaizer:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        date:
+          type: string
+          format: date-time
+          readOnly: true
+        type:
+          $ref: '#/components/schemas/ReportSerialaizerTypeEnum'
+        description:
+          type: string
+        status:
+          $ref: '#/components/schemas/ReportSerialaizerStatusEnum'
+        Waybill:
+          type: integer
+      required:
+      - Waybill
+      - date
+      - description
+      - id
+      - type
+    ReportSerialaizerStatusEnum:
+      enum:
+      - W
+      - S
+      - N
+      type: string
+      description: |-
+        * `W` - در حال پیگیری گزارش
+        * `S` - رفع گزارش و ادامه مسیر
+        * `N` - عدم توانایی در ادامه حمل بار
+    ReportSerialaizerTypeEnum:
+      enum:
+      - A
+      - R
+      - B
+      - W
+      type: string
+      description: |-
+        * `A` - تصادف
+        * `R` - سرقت از محموله
+        * `B` - خرابی خودروی باربری
+        * `W` - آب و هوای نامساعد
+    ResendEmailVerification:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+    RestAuthDetail:
+      type: object
+      properties:
+        detail:
+          type: string
+          readOnly: true
+      required:
+      - detail
+    RouteSerialaizer:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        origin:
+          type: string
+          maxLength: 200
+        destination:
+          type: string
+          maxLength: 200
+        dest_city:
+          type: string
+          nullable: true
+          maxLength: 200
+        origin_city:
+          type: string
+          nullable: true
+          maxLength: 200
+        distance:
+          type: string
+          maxLength: 200
+        estimated_time:
+          type: string
+          maxLength: 200
+        advertisement:
+          type: integer
+      required:
+      - advertisement
+      - destination
+      - distance
+      - estimated_time
+      - id
+      - origin
+    ShipperSerialaizer:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        profilePicture:
+          type: string
+          format: uri
+        phone:
+          type: string
+          maxLength: 11
+        user:
+          type: integer
+      required:
+      - id
+      - phone
+      - user
+    Token:
+      type: object
+      description: Serializer for Token model.
+      properties:
+        key:
+          type: string
+          maxLength: 40
+      required:
+      - key
+    UserDetails:
+      type: object
+      description: User model w/o password
+      properties:
+        pk:
+          type: integer
+          readOnly: true
+          title: ID
+        username:
+          type: string
+          description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.
+          pattern: ^[\w.@+-]+$
+          maxLength: 150
+        email:
+          type: string
+          format: email
+          readOnly: true
+          title: Email address
+        first_name:
+          type: string
+          maxLength: 150
+        last_name:
+          type: string
+          maxLength: 150
+      required:
+      - email
+      - pk
+      - username
+    UserSerialaizer:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        password:
+          type: string
+          maxLength: 128
+        last_login:
+          type: string
+          format: date-time
+          nullable: true
+        is_superuser:
+          type: boolean
+          title: Superuser status
+          description: Designates that this user has all permissions without explicitly
+            assigning them.
+        username:
+          type: string
+          description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.
+          pattern: ^[\w.@+-]+$
+          maxLength: 150
+        first_name:
+          type: string
+          maxLength: 150
+        last_name:
+          type: string
+          maxLength: 150
+        email:
+          type: string
+          format: email
+          title: Email address
+          maxLength: 254
+        is_staff:
+          type: boolean
+          title: Staff status
+          description: Designates whether the user can log into this admin site.
+        is_active:
+          type: boolean
+          title: Active
+          description: Designates whether this user should be treated as active. Unselect
+            this instead of deleting accounts.
+        date_joined:
+          type: string
+          format: date-time
+        groups:
+          type: array
+          items:
+            type: integer
+          description: The groups this user belongs to. A user will get all permissions
+            granted to each of their groups.
+        user_permissions:
+          type: array
+          items:
+            type: integer
+          description: Specific permissions for this user.
+      required:
+      - id
+      - password
+      - username
+    VerifyEmail:
+      type: object
+      properties:
+        key:
+          type: string
+          writeOnly: true
+      required:
+      - key
+    WaybillSerialaizer:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        pickup_date:
+          type: string
+          format: date-time
+          readOnly: true
+        delivery_date:
+          type: string
+          format: date-time
+          readOnly: true
+        status:
+          $ref: '#/components/schemas/WaybillSerialaizerStatusEnum'
+        advertisement:
+          type: integer
+        driver:
+          type: integer
+          nullable: true
+      required:
+      - advertisement
+      - delivery_date
+      - id
+      - pickup_date
+    WaybillSerialaizerStatusEnum:
+      enum:
+      - W
+      - S
+      - T
+      - R
+      - A
+      - N
+      type: string
+      description: |-
+        * `W` - پذیرفته شده توسط راننده
+        * `S` - در حال بارگیری
+        * `T` - در حال حمل
+        * `R` - گزارش
+        * `A` - تحویل بار
+        * `N` - ناتمام
+  securitySchemes:
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: sessionid
+    tokenAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Token-based authentication with required prefix "Token"

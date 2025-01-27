@@ -41,7 +41,18 @@ INSTALLED_APPS = [
     'main.apps.MainConfig',
     'yol.apps.YolConfig',
     'yuk.apps.YukConfig',
+    'apis.apps.ApisConfig',
     "bootstrap5",
+    'rest_framework',
+    'corsheaders',
+    "rest_framework.authtoken",
+    "django.contrib.sites",
+    "allauth",
+    "allauth.account",
+    "allauth.socialaccount",
+    "drf_spectacular",
+    "dj_rest_auth.registration",
+    "dj_rest_auth",
 ]
 
 MIDDLEWARE = [
@@ -52,7 +63,33 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    "allauth.account.middleware.AccountMiddleware",
 ]
+
+CORS_ALLOWED_ORIGINS = (
+    "http://localhost:8080",
+    "http://localhost:8000",
+)
+
+CSRF_TRUSTED_ORIGINS = ["http://localhost:8000"]
+
+REST_FRAMEWORK = {
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.IsAuthenticated",
+    ],
+    "DEFAULT_AUTHENTICATION_CLASSES" : [
+        "rest_framework.authentication.SessionAuthentication",
+        "rest_framework.authentication.TokenAuthentication",
+    ],
+    "DEFAULT_SCHEMA_CLASS" : "drf_spectacular.openapi.AutoSchema",
+}
+
+SPECTACULAR_SETTINGS = {
+    "TITLE": "Blog API Project",
+    "DESCRIPTION": "A sample blog to learn about DRF",
+    "VERSION": "1.0.0",
+}
 
 ROOT_URLCONF = 'Yolchi.urls'
 
@@ -68,6 +105,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                "django.template.context_processors.request",
+
             ],
         },
     },
@@ -141,3 +180,5 @@ EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'yolchi.website@gmail.com'
 EMAIL_HOST_PASSWORD = "bkyw xyje doox qxzh"
+
+SITE_ID = 1
