@@ -18,7 +18,12 @@
     <div class="container">
         <div class="row d-flex justify-content-center">
             {% for ad in ads %}
+            {% if ad.0.status == 'A' %}
+            <div class="card col-3 m-3 bg-success">
+            {% else %}
             <div class="card col-3 m-3">
+            {% endif %}
+            
                 <div class="card-body p-4">
                   <h4 class="card-title text-center">{{ad.0.title}}</h4>
                   <hr>

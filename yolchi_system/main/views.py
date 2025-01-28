@@ -136,6 +136,7 @@ def ads(request):
             isDriver = False
     else:
         auth = False
+        app = False
         isDriver = False
         
     if request.method == "POST":
@@ -230,7 +231,7 @@ def ads(request):
         except EmptyPage:
             ads = paginator.page(paginator.num_pages)
 
-        return render(request, "main/ads.html",{'ads':ads,'auth':auth,'isDriver': isDriver,'app':app,'filter_params':filter_params})
+        return render(request, "main/ads.html",{'ads':ads,'auth':auth,'filter_params':filter_params , 'isDriver': isDriver,'app':app})
 
 def registerWaybill(request,ad_id):
     ad = Advertisement.objects.get(pk=ad_id)
