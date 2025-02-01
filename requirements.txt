@@ -1,0 +1,6 @@
+django==4.2.16
+django-bootstrap-v5==1.0.11
+django-allauth==65.3.0
+django-cors-headers==4.6.0
+dj-rest-auth==7.0.0
+drf-spectacular==0.28.0
