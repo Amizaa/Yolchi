@@ -1,0 +1,9 @@
+
+name: Deploy to Kubernetes
+on: [push]
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - run: kubectl apply -f deployment.yaml

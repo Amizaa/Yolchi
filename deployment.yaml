@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: yolchi
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+     app: yolchi
+  template:
+    metadata:
+      labels:
+        app: yolchi
+    spec:
+      containers:
+      - name: yolchi
+        image: amirrezano/yolchi
+        ports:
+        - containerPort: 8000
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8000
+          initialDelaySeconds: 5
+          periodSeconds: 10
